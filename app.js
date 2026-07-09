@@ -231,13 +231,15 @@ Mohon diproses untuk ketersediaan kursi. Terima kasih!`;
         }
     };
 
-    // Velocity scroll skew spring animation on cards
+    // Velocity scroll skew spring animation on cards (Desktop only for light performance on mobile)
     let lastScrollTop = 0;
     let velocity = 0;
     let scrollTimeout;
     const velocityCards = document.querySelectorAll('.lift-card, .zoom-img-container');
 
     const applyVelocitySkew = (scrolled) => {
+        if (window.innerWidth < 768) return;
+        
         velocity = scrolled - lastScrollTop;
         lastScrollTop = scrolled <= 0 ? 0 : scrolled;
         
@@ -258,9 +260,16 @@ Mohon diproses untuk ketersediaan kursi. Terima kasih!`;
         }, 120);
     };
 
-    // Scroll-reactive image parallax inside cards
+    // Scroll-reactive image parallax inside cards (Desktop only for light performance on mobile)
     const parallaxImages = document.querySelectorAll('.dest-img-parallax');
     const applyImageParallax = () => {
+        if (window.innerWidth < 768) {
+            parallaxImages.forEach(img => {
+                img.style.transform = 'none';
+            });
+            return;
+        }
+        
         const viewportHeight = window.innerHeight;
         parallaxImages.forEach(img => {
             const rect = img.parentElement.getBoundingClientRect();
@@ -298,10 +307,14 @@ Mohon diproses untuk ketersediaan kursi. Terima kasih!`;
             applyVelocitySkew(scrolled);
             applyImageParallax();
             
-            // Parallax velocity scroll on Hero background
+            // Parallax velocity scroll on Hero background (Desktop only)
             const heroBg = document.querySelector('.hero-bg');
             if (heroBg) {
-                heroBg.style.transform = `translate3d(0, ${scrolled * 0.35}px, 0)`;
+                if (window.innerWidth >= 768) {
+                    heroBg.style.transform = `translate3d(0, ${scrolled * 0.35}px, 0)`;
+                } else {
+                    heroBg.style.transform = 'none';
+                }
             }
         });
     } else {
@@ -313,7 +326,11 @@ Mohon diproses untuk ketersediaan kursi. Terima kasih!`;
             
             const heroBg = document.querySelector('.hero-bg');
             if (heroBg) {
-                heroBg.style.transform = `translate3d(0, ${scrolled * 0.35}px, 0)`;
+                if (window.innerWidth >= 768) {
+                    heroBg.style.transform = `translate3d(0, ${scrolled * 0.35}px, 0)`;
+                } else {
+                    heroBg.style.transform = 'none';
+                }
             }
         });
     }

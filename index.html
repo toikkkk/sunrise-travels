@@ -10,17 +10,20 @@
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&amp;display=block"
         rel="stylesheet" />
-    <link rel="stylesheet" href="style.css?v=17834102" />
+    <link rel="stylesheet" href="style.css?v=17834103" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script src="tailwind-config.js"></script>
 </head>
 
 <body class="bg-background text-on-background font-body-md">
     <!-- Custom Error Toast Notification -->
-    <div id="error-toast" class="fixed top-6 left-1/2 -translate-x-1/2 z-[200] flex items-center justify-between gap-3 bg-[#180C0C]/95 border border-red-500/25 backdrop-blur-md px-5 py-3.5 rounded-2xl shadow-2xl max-w-sm w-[90%] md:w-full transition-all duration-300 transform -translate-y-24 opacity-0 pointer-events-none select-none">
+    <div id="error-toast"
+        class="fixed top-6 left-1/2 -translate-x-1/2 z-[200] flex items-center justify-between gap-3 bg-[#180C0C]/95 border border-red-500/25 backdrop-blur-md px-5 py-3.5 rounded-2xl shadow-2xl max-w-sm w-[90%] md:w-full transition-all duration-300 transform -translate-y-24 opacity-0 pointer-events-none select-none">
         <div class="flex items-center gap-3 text-red-200 text-left">
-            <span class="material-symbols-outlined text-red-500 block text-xl select-none" data-icon="error">error</span>
-            <span id="error-toast-message" class="text-xs md:text-sm font-semibold leading-snug">Silakan pilih tanggal keberangkatan terlebih dahulu.</span>
+            <span class="material-symbols-outlined text-red-500 block text-xl select-none"
+                data-icon="error">error</span>
+            <span id="error-toast-message" class="text-xs md:text-sm font-semibold leading-snug">Silakan pilih tanggal
+                keberangkatan terlebih dahulu.</span>
         </div>
         <button id="close-toast-btn" type="button" class="text-red-400 hover:text-red-300 transition-colors">
             <span class="material-symbols-outlined text-lg block select-none" data-icon="close">close</span>
@@ -29,7 +32,7 @@
 
     <!-- Header Navbar -->
     <header class="fixed top-0 w-full z-50 bg-transparent border-b border-white/10 py-4">
-        <div class="max-w-container-max mx-auto px-margin-desktop flex items-center justify-between h-16">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex items-center justify-between h-16">
             <a href="#" class="flex items-center gap-2">
                 <span class="material-symbols-outlined text-white text-3xl nav-logo transition-colors"
                     data-icon="directions_bus">directions_bus</span>
@@ -39,14 +42,14 @@
             </a>
             <div>
                 <a class="px-5 py-2 md:px-6 md:py-2.5 border border-white text-white rounded-full hover:bg-white hover:text-primary transition-all duration-200 header-cta font-semibold text-xs md:text-sm"
-                    href="https://wa.me/6289630550000">Hubungi Kami</a>
+                    href="https://wa.me/6289630550000?text=Halo%20Sunrise%20Travels%2C%20saya%20ingin%20tanya%20informasi%20mengenai%20layanan%20travel%20dan%20shuttle.">Hubungi Kami</a>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section (Sticky Background Anchor) -->
+    <!-- Hero Section (Relative on Mobile / Sticky on Desktop) -->
     <section
-        class="sticky top-0 w-full z-10 min-h-screen flex items-center pt-24 pb-12 px-margin-mobile md:px-margin-desktop overflow-hidden">
+        class="relative md:sticky top-0 w-full z-10 min-h-screen flex items-center pt-24 pb-12 px-margin-mobile md:px-margin-desktop overflow-hidden">
         <!-- Hero Background -->
         <div class="absolute inset-0 z-0">
             <div class="w-full h-full bg-cover bg-center hero-bg"></div>
@@ -65,22 +68,22 @@
                 <div
                     class="flex items-center justify-center gap-2 md:gap-3 mb-6 w-full max-w-lg mx-auto flex-nowrap overflow-visible select-none">
                     <span
-                        class="border border-white/25 bg-white/15 backdrop-blur-md px-3.5 py-2 rounded-xl text-white font-bold text-[10px] md:text-xs tracking-wider uppercase whitespace-nowrap shadow-md">Banyuwangi</span>
+                        class="border border-white/25 bg-white/15 backdrop-blur-md px-2.5 py-1.5 rounded-xl text-white font-bold text-[9px] md:text-xs md:px-3.5 md:py-2 tracking-wider uppercase whitespace-nowrap shadow-md">Banyuwangi</span>
                     <span class="material-symbols-outlined text-primary text-base md:text-lg font-bold block"
                         data-icon="arrow_right_alt">arrow_right_alt</span>
                     <span
-                        class="border border-white/25 bg-white/15 backdrop-blur-md px-3.5 py-2 rounded-xl text-white font-bold text-[10px] md:text-xs tracking-wider uppercase whitespace-nowrap shadow-md">Surabaya</span>
+                        class="border border-white/25 bg-white/15 backdrop-blur-md px-2.5 py-1.5 rounded-xl text-white font-bold text-[9px] md:text-xs md:px-3.5 md:py-2 tracking-wider uppercase whitespace-nowrap shadow-md">Surabaya</span>
                     <span class="material-symbols-outlined text-primary text-base md:text-lg font-bold block"
                         data-icon="arrow_right_alt">arrow_right_alt</span>
                     <span
-                        class="border border-white/25 bg-white/15 backdrop-blur-md px-3.5 py-2 rounded-xl text-white font-bold text-[10px] md:text-xs tracking-wider uppercase whitespace-nowrap shadow-md">Malang</span>
+                        class="border border-white/25 bg-white/15 backdrop-blur-md px-2.5 py-1.5 rounded-xl text-white font-bold text-[9px] md:text-xs md:px-3.5 md:py-2 tracking-wider uppercase whitespace-nowrap shadow-md">Malang</span>
                 </div>
                 <p class="font-body-lg text-white/85 max-w-xl mb-8 leading-relaxed drop-shadow-md text-sm md:text-base">
-                    Nikmati perjalanan antar kota terbaik dengan armada premium Toyota Hiace. Layanan door-to-door
+                    Nikmati perjalanan antar kota terbaik dengan armada premium. Layanan door-to-door
                     harian yang aman, nyaman, dan selalu tepat waktu untuk Anda.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 mb-8 w-full sm:w-auto justify-center">
-                    <a href="https://wa.me/6289630550000"
+                    <a href="https://wa.me/6289630550000?text=Halo%20Sunrise%20Travels%2C%20saya%20ingin%20pesan%20tiket%20shuttle%20eksekutif."
                         class="flex items-center justify-center gap-2 bg-primary text-white text-sm md:text-base px-6 py-3 rounded-full hover:bg-primary/90 transition-all transform hover:scale-105 active:scale-95 shadow-lg font-bold">
                         Pesan Tiket Sekarang
                         <span class="material-symbols-outlined text-lg" data-icon="chat">chat</span>
@@ -249,7 +252,7 @@
 
     <!-- Overlapping Card 3: Inspirasi Perjalanan -->
     <section id="destinasi" class="relative z-40 bg-background shadow-overlay rounded-t-[40px] -mt-10 py-20">
-        <div class="max-w-container-max mx-auto px-margin-desktop">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
             <div class="text-center max-w-2xl mx-auto mb-12">
                 <h2
                     class="font-display-lg text-display-lg-mobile md:text-[32px] text-on-surface font-extrabold tracking-tight">
@@ -354,7 +357,7 @@
 
     <!-- Overlapping Card 4: Testimoni -->
     <section id="testimoni" class="relative z-40 bg-surface-container-low py-20">
-        <div class="max-w-container-max mx-auto px-margin-desktop">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
             <div class="text-center max-w-2xl mx-auto mb-16">
                 <span
                     class="text-primary font-label-sm uppercase tracking-widest bg-primary-container px-3.5 py-1 rounded-full text-xs font-semibold">Testimoni</span>
@@ -423,7 +426,7 @@
 
     <!-- Overlapping Card 5: Kontak & Lokasi -->
     <section id="kontak" class="relative z-40 bg-background py-20">
-        <div class="max-w-container-max mx-auto px-margin-desktop">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div class="flex flex-col gap-4 text-left">
                     <span
@@ -458,7 +461,7 @@
 
     <!-- Footer -->
     <footer class="relative z-40 bg-on-surface w-full py-16 text-white">
-        <div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-3 gap-12">
             <!-- Brand & Info -->
             <div class="flex flex-col gap-4 text-left">
                 <div class="flex items-center gap-2">
@@ -512,10 +515,10 @@
                         data-icon="location_on">location_on</span>
                     <span class="">Jl. Boediono, Singotrunan, Banyuwangi, Jawa Timur</span>
                 </div>
-                <div class="flex items-center gap-3 text-white/70 text-sm">
+                <a href="https://wa.me/6289630550000?text=Halo%20Sunrise%20Travels%2C%20saya%20ingin%20tanya%20informasi%20mengenai%20layanan%20travel%20dan%20shuttle." class="flex items-center gap-3 text-white/70 hover:text-primary transition-colors text-sm">
                     <span class="material-symbols-outlined text-primary text-xl block" data-icon="call">call</span>
                     <span class="">+62 896-3055-0000</span>
-                </div>
+                </a>
                 <div class="flex items-center gap-3 text-white/70 text-sm">
                     <span class="material-symbols-outlined text-primary text-xl block" data-icon="mail">mail</span>
                     <span class="">sunrisetourandtravels9@gmail.com</span>
@@ -530,9 +533,9 @@
 
     <!-- Booking Details Modal -->
     <div id="booking-modal"
-        class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 hidden transition-opacity duration-300 opacity-0 select-none">
+        class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 hidden transition-opacity duration-300 opacity-0 select-none overflow-y-auto">
         <div
-            class="bg-white rounded-3xl shadow-2xl border border-outline-variant p-6 md:p-8 max-w-md w-full relative transform scale-95 transition-transform duration-300">
+            class="bg-white rounded-3xl shadow-2xl border border-outline-variant p-6 md:p-8 max-w-md w-full relative transform scale-95 transition-transform duration-300 my-auto">
             <!-- Close Button -->
             <button id="close-booking-modal" type="button"
                 class="absolute top-4 right-4 text-secondary hover:text-on-surface transition-colors">
@@ -584,7 +587,7 @@
 
     <!-- Fixed WhatsApp Floating CTA -->
     <a class="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl flex items-center gap-2 hover:scale-110 transition-transform md:px-6"
-        href="https://wa.me/6289630550000">
+        href="https://wa.me/6289630550000?text=Halo%20Sunrise%20Travels%2C%20saya%20butuh%20bantuan%20mengenai%20pemesanan%20shuttle.">
         <svg class="w-6 h-6 fill-current" viewbox="0 0 24 24">
             <path
                 d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.185-.573c.948.517 2.035.808 3.145.808 3.181 0 5.767-2.584 5.768-5.764 0-3.18-2.586-5.763-5.767-5.763zm3.38 8.161c-.147.415-.852.763-1.176.811-.324.049-.728.067-1.176-.076-.285-.091-.645-.221-1.096-.419-1.921-.843-3.155-2.822-3.251-2.951-.096-.129-.78-.999-.78-1.996 0-.996.521-1.488.706-1.691.185-.202.404-.253.539-.253.135 0 .27 0 .387.005.122.005.286-.046.448.344.167.4.57 1.391.62 1.492.05.101.084.219.017.354-.067.135-.101.219-.202.337-.101.118-.212.264-.303.354-.101.101-.207.211-.089.415.118.204.526.868 1.129 1.403.778.69 1.433.905 1.636 1.006.204.101.324.084.444-.051.12-.135.521-.607.658-.81.135-.204.27-.169.456-.101.185.068 1.179.556 1.381.657.202.101.337.151.387.236.05.084.05.49-.097.905zM12 0C5.373 0 0 5.373 0 12c0 2.123.55 4.12 1.52 5.857L.085 24l6.299-1.654C8.027 23.407 9.943 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z">
@@ -596,7 +599,7 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-    <script src="app.js?v=17834102" defer></script>
+    <script src="app.js?v=17834103" defer></script>
 </body>
 
 </html>
