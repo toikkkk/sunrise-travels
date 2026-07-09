@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&amp;display=block"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=17834102" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="tailwind-config.js"></script>
+</head>
+
+<body class="bg-background text-on-background font-body-md">
+    <!-- Custom Error Toast Notification -->
+    <div id="error-toast" class="fixed top-6 left-1/2 -translate-x-1/2 z-[200] flex items-center justify-between gap-3 bg-[#180C0C]/95 border border-red-500/25 backdrop-blur-md px-5 py-3.5 rounded-2xl shadow-2xl max-w-sm w-[90%] md:w-full transition-all duration-300 transform -translate-y-24 opacity-0 pointer-events-none select-none">
+        <div class="flex items-center gap-3 text-red-200 text-left">
+            <span class="material-symbols-outlined text-red-500 block text-xl select-none" data-icon="error">error</span>
+            <span id="error-toast-message" class="text-xs md:text-sm font-semibold leading-snug">Silakan pilih tanggal keberangkatan terlebih dahulu.</span>
+        </div>
+        <button id="close-toast-btn" type="button" class="text-red-400 hover:text-red-300 transition-colors">
+            <span class="material-symbols-outlined text-lg block select-none" data-icon="close">close</span>
+        </button>
+    </div>
+
+    <!-- Header Navbar -->
+    <header class="fixed top-0 w-full z-50 bg-transparent border-b border-white/10 py-4">
+        <div class="max-w-container-max mx-auto px-margin-desktop flex items-center justify-between h-16">
+            <a href="#" class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-white text-3xl nav-logo transition-colors"
+                    data-icon="directions_bus">directions_bus</span>
+                <span
+                    class="font-display-lg text-headline-md text-white tracking-tight nav-logo-text transition-colors">Sunrise
+                    Travels</span>
+            </a>
+            <div>
+                <a class="px-5 py-2 md:px-6 md:py-2.5 border border-white text-white rounded-full hover:bg-white hover:text-primary transition-all duration-200 header-cta font-semibold text-xs md:text-sm"
+                    href="https://wa.me/6289630550000">Hubungi Kami</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section (Sticky Background Anchor) -->
+    <section
+        class="sticky top-0 w-full z-10 min-h-screen flex items-center pt-24 pb-12 px-margin-mobile md:px-margin-desktop overflow-hidden">
+        <!-- Hero Background -->
+        <div class="absolute inset-0 z-0">
+            <div class="w-full h-full bg-cover bg-center hero-bg"></div>
+            <div class="absolute inset-0 hero-gradient"></div>
+        </div>
+
+        <!-- Hero Split Content Wrapper -->
+        <div
+            class="relative z-10 w-full max-w-4xl mx-auto px-margin-mobile md:px-margin-desktop text-center flex flex-col items-center justify-center min-h-[50vh]">
+            <!-- Copywriting -->
+            <div class="flex flex-col items-center text-center text-white animate-slide-up">
+                <h1
+                    class="font-display-lg text-4xl md:text-6xl text-white mb-4 drop-shadow-lg font-bold tracking-tight max-w-4xl">
+                    Sunrise Travels
+                </h1>
+                <div
+                    class="flex items-center justify-center gap-2 md:gap-3 mb-6 w-full max-w-lg mx-auto flex-nowrap overflow-visible select-none">
+                    <span
+                        class="border border-white/25 bg-white/15 backdrop-blur-md px-3.5 py-2 rounded-xl text-white font-bold text-[10px] md:text-xs tracking-wider uppercase whitespace-nowrap shadow-md">Banyuwangi</span>
+                    <span class="material-symbols-outlined text-primary text-base md:text-lg font-bold block"
+                        data-icon="arrow_right_alt">arrow_right_alt</span>
+                    <span
+                        class="border border-white/25 bg-white/15 backdrop-blur-md px-3.5 py-2 rounded-xl text-white font-bold text-[10px] md:text-xs tracking-wider uppercase whitespace-nowrap shadow-md">Surabaya</span>
+                    <span class="material-symbols-outlined text-primary text-base md:text-lg font-bold block"
+                        data-icon="arrow_right_alt">arrow_right_alt</span>
+                    <span
+                        class="border border-white/25 bg-white/15 backdrop-blur-md px-3.5 py-2 rounded-xl text-white font-bold text-[10px] md:text-xs tracking-wider uppercase whitespace-nowrap shadow-md">Malang</span>
+                </div>
+                <p class="font-body-lg text-white/85 max-w-xl mb-8 leading-relaxed drop-shadow-md text-sm md:text-base">
+                    Nikmati perjalanan antar kota terbaik dengan armada premium Toyota Hiace. Layanan door-to-door
+                    harian yang aman, nyaman, dan selalu tepat waktu untuk Anda.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 mb-8 w-full sm:w-auto justify-center">
+                    <a href="https://wa.me/6289630550000"
+                        class="flex items-center justify-center gap-2 bg-primary text-white text-sm md:text-base px-6 py-3 rounded-full hover:bg-primary/90 transition-all transform hover:scale-105 active:scale-95 shadow-lg font-bold">
+                        Pesan Tiket Sekarang
+                        <span class="material-symbols-outlined text-lg" data-icon="chat">chat</span>
+                    </a>
+                    <a href="#rute"
+                        class="flex items-center justify-center gap-2 border border-white/30 text-white text-sm md:text-base px-6 py-3 rounded-full hover:bg-white/10 transition-all backdrop-blur-sm font-semibold">
+                        Lihat Rute &amp; Tarif
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overlapping Card 1: Booking & Keunggulan -->
+    <div class="relative z-20 bg-background shadow-overlay rounded-t-[40px] pt-16 pb-12">
+        <!-- Booking Widget Section -->
+        <section
+            class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop w-full mb-16 animate-slide-up delay-200">
+            <div class="bg-white rounded-3xl shadow-xl border border-outline-variant p-6 md:p-8">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+                    <!-- Route Selection -->
+                    <div class="md:col-span-4 flex flex-col items-start gap-1">
+                        <label
+                            class="font-label-sm text-on-surface-variant px-1 uppercase tracking-wider text-[10px] font-bold">Pilih
+                            Rute Perjalanan</label>
+                        <div class="relative w-full">
+                            <select id="booking-route-select"
+                                class="w-full bg-surface-container-low border-outline-variant rounded-xl py-4 pl-4 pr-12 text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container appearance-none bg-none transition-all">
+                                <option value="BWI-SBY">Banyuwangi (BWI) → Surabaya (SBY)</option>
+                                <option value="SBY-BWI">Surabaya (SBY) → Banyuwangi (BWI)</option>
+                                <option value="BWI-MLG">Banyuwangi (BWI) → Malang (MLG)</option>
+                                <option value="MLG-BWI">Malang (MLG) → Banyuwangi (BWI)</option>
+                            </select>
+                            <span
+                                class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-secondary"
+                                data-icon="expand_more">expand_more</span>
+                        </div>
+                    </div>
+                    <!-- Date Picker -->
+                    <div class="md:col-span-3 flex flex-col items-start gap-1">
+                        <label
+                            class="font-label-sm text-on-surface-variant px-1 uppercase tracking-wider text-[10px] font-bold">Tanggal
+                            Keberangkatan</label>
+                        <div class="relative w-full">
+                            <input id="booking-date-input"
+                                class="w-full bg-surface-container-low border-outline-variant rounded-xl py-4 px-4 text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all"
+                                type="date" />
+                        </div>
+                    </div>
+                    <!-- Passengers -->
+                    <div class="md:col-span-2 flex flex-col items-start gap-1">
+                        <label
+                            class="font-label-sm text-on-surface-variant px-1 uppercase tracking-wider text-[10px] font-bold">Penumpang</label>
+                        <div class="relative w-full">
+                            <select id="booking-passengers-select"
+                                class="w-full bg-surface-container-low border-outline-variant rounded-xl py-4 pl-4 pr-12 text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container appearance-none bg-none transition-all">
+                                <option>1 Orang</option>
+                                <option>2 Orang</option>
+                                <option>3 Orang</option>
+                                <option>4+ Orang</option>
+                            </select>
+                            <span
+                                class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-secondary"
+                                data-icon="person">person</span>
+                        </div>
+                    </div>
+                    <!-- Submit Button -->
+                    <div class="md:col-span-3 flex flex-col justify-end">
+                        <button id="search-schedules-btn"
+                            class="w-full bg-primary text-white font-headline-md py-4 rounded-xl shadow-lg hover:bg-primary/95 transition-all duration-300 transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2 font-bold">
+                            Pesan
+                            <span class="material-symbols-outlined" data-icon="chat">chat</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Overlapping Card 2: Rute & Harga -->
+    <section id="rute" class="relative z-30 bg-surface-container-low shadow-overlay rounded-t-[40px] -mt-10 py-12">
+        <div class="max-w-container-max mx-auto px-margin-desktop">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                <div class="max-w-xl text-left">
+                    <span
+                        class="text-primary font-label-sm uppercase tracking-widest bg-primary-container px-3.5 py-1 rounded-full text-xs font-semibold">Destinasi
+                        Utama</span>
+                    <h2 class="font-display-lg text-2xl md:text-[32px] text-on-surface mt-2 font-bold tracking-tight">
+                        Rute Terpopuler &amp; Harga Tarif</h2>
+                    <p class="text-secondary font-body-md mt-1.5 text-sm">Pilih rute perjalanan Anda dengan armada
+                        shuttle terbaik. Harga kompetitif dengan layanan berkelas.</p>
+                </div>
+                <a href="https://wa.me/6289630550000?text=Halo%20Sunrise%20Travels%2C%20saya%20ingin%20tanya%20mengenai%20jadwal%20dan%20rute"
+                    class="text-primary font-label-sm flex items-center gap-1 group font-bold text-xs md:text-sm">
+                    Hubungi Admin <span
+                        class="material-symbols-outlined group-hover:translate-x-1 transition-transform text-sm md:text-base"
+                        data-icon="arrow_forward">arrow_forward</span>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <!-- Card 1 -->
+                <div
+                    class="bg-white p-6 rounded-2xl shadow-sm border border-outline-variant hover:border-primary transition-all duration-300 group cursor-pointer hover:shadow-xl lift-card text-left">
+                    <div
+                        class="bg-surface-container p-3 rounded-lg w-fit mb-4 group-hover:bg-primary-fixed transition-colors">
+                        <span class="material-symbols-outlined text-primary text-xl block"
+                            data-icon="location_on">location_on</span>
+                    </div>
+                    <h3 class="font-headline-md text-on-surface mb-0.5 text-lg font-bold">BWI → SBY</h3>
+                    <p class="text-label-sm text-secondary mb-4 text-xs">Banyuwangi - Surabaya (PP)</p>
+                    <div class="flex items-baseline gap-1 mb-4 border-b border-outline-variant pb-4">
+                        <span class="text-body-md text-on-surface-variant text-xs">Mulai</span>
+                        <span class="text-2xl text-primary font-extrabold">IDR 280k</span>
+                        <span class="text-secondary text-[10px]">/ Orang</span>
+                    </div>
+                    <ul class="space-y-3 mb-6 text-body-md text-on-surface-variant text-xs">
+                        <li class="flex items-center gap-2"><span
+                                class="material-symbols-outlined text-primary text-base block"
+                                data-icon="check_circle">check_circle</span> Eksekutif Seat (Kapasitas Terbatas)</li>
+                        <li class="flex items-center gap-2"><span
+                                class="material-symbols-outlined text-primary text-base block"
+                                data-icon="check_circle">check_circle</span> Full Jalur Tol (Perjalanan Lebih Cepat)
+                        </li>
+                        <li class="flex items-center gap-2"><span
+                                class="material-symbols-outlined text-primary text-base block"
+                                data-icon="check_circle">check_circle</span> Door to Door (Jemput &amp; Antar)</li>
+                        <li class="flex items-center gap-2 text-primary font-semibold"><span
+                                class="material-symbols-outlined text-primary text-base block"
+                                data-icon="check_circle">check_circle</span> Makanan, Snack Box &amp; Minuman</li>
+                    </ul>
+                </div>
+                <!-- Card 2 -->
+                <div
+                    class="bg-white p-6 rounded-2xl shadow-sm border border-outline-variant hover:border-primary transition-all duration-300 group cursor-pointer hover:shadow-xl lift-card text-left">
+                    <div
+                        class="bg-surface-container p-3 rounded-lg w-fit mb-4 group-hover:bg-primary-fixed transition-colors">
+                        <span class="material-symbols-outlined text-primary text-xl block"
+                            data-icon="location_on">location_on</span>
+                    </div>
+                    <h3 class="font-headline-md text-on-surface mb-0.5 text-lg font-bold">BWI → MLG</h3>
+                    <p class="text-label-sm text-secondary mb-4 text-xs">Banyuwangi - Malang (PP)</p>
+                    <div class="flex items-baseline gap-1 mb-4 border-b border-outline-variant pb-4">
+                        <span class="text-body-md text-on-surface-variant text-xs">Mulai</span>
+                        <span class="text-2xl text-primary font-extrabold">IDR 250k</span>
+                        <span class="text-secondary text-[10px]">/ Orang</span>
+                    </div>
+                    <ul class="space-y-3 mb-6 text-body-md text-on-surface-variant text-xs">
+                        <li class="flex items-center gap-2"><span
+                                class="material-symbols-outlined text-primary text-base block"
+                                data-icon="check_circle">check_circle</span> Eksekutif Seat (Kapasitas Terbatas)</li>
+                        <li class="flex items-center gap-2"><span
+                                class="material-symbols-outlined text-primary text-base block"
+                                data-icon="check_circle">check_circle</span> Armada Terbaru (Hiace Commuter/Premio)</li>
+                        <li class="flex items-center gap-2"><span
+                                class="material-symbols-outlined text-primary text-base block"
+                                data-icon="check_circle">check_circle</span> Door to Door (Jemput &amp; Antar)</li>
+                        <li class="flex items-center gap-2 text-primary font-semibold"><span
+                                class="material-symbols-outlined text-primary text-base block"
+                                data-icon="check_circle">check_circle</span> Makanan, Snack Box &amp; Minuman</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overlapping Card 3: Inspirasi Perjalanan -->
+    <section id="destinasi" class="relative z-40 bg-background shadow-overlay rounded-t-[40px] -mt-10 py-20">
+        <div class="max-w-container-max mx-auto px-margin-desktop">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2
+                    class="font-display-lg text-display-lg-mobile md:text-[32px] text-on-surface font-extrabold tracking-tight">
+                    Inspirasi Perjalanan</h2>
+                <p class="text-secondary text-sm mt-2">Jelajahi keindahan tersembunyi di ujung timur Pulau Jawa</p>
+            </div>
+
+            <!-- Grid Layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 max-w-5xl mx-auto items-stretch">
+                <!-- Left Column: Big Card (Pulau Merah) -->
+                <div
+                    class="lg:col-span-5 relative rounded-2xl overflow-hidden h-[300px] lg:h-[480px] shadow-md border border-outline-variant group zoom-img-container">
+                    <div class="w-full h-[120%] absolute -top-[10%] left-0 dest-img-parallax">
+                        <img alt="Pulau Merah" class="w-full h-full object-cover dest-img"
+                            src="assets/images/pulau_merah.jpg" />
+                    </div>
+                    <div
+                        class="absolute inset-0 z-10 bg-gradient-to-t from-black/85 via-black/35 to-transparent flex flex-col justify-end p-6 text-left">
+                        <span
+                            class="bg-primary text-white text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full w-fit mb-3">Trending</span>
+                        <h3 class="text-white font-headline-md mb-2 text-xl font-bold leading-tight">Pulau Merah: Sunset
+                            Terbaik</h3>
+                        <p class="text-white/80 text-xs font-body-md mb-6 line-clamp-2">Saksikan pemandangan matahari
+                            terbenam yang memukau di balik bukit merah ikonik di bibir pantai selatan.</p>
+                        <a href="https://wa.me/6289630550000?text=Halo%20Sunrise%20Travels%2C%20saya%20ingin%20memesan%20atau%20tanya%20paket%20tour%20Pulau%20Merah"
+                            target="_blank"
+                            class="px-5 py-2.5 bg-white text-on-surface font-label-sm font-bold rounded-xl hover:bg-primary hover:text-white transition-all w-fit shadow-md text-xs">
+                            Eksplorasi Sekarang
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column: 2x2 Grid of 4 Small Cards -->
+                <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6 h-auto lg:h-[480px]">
+                    <!-- Card 1: De Djawatan -->
+                    <a href="https://wa.me/6289630550000?text=Halo%20Sunrise%20Travels%2C%20saya%20ingin%20memesan%20atau%20tanya%20paket%20tour%20De%20Djawatan"
+                        target="_blank"
+                        class="relative rounded-2xl overflow-hidden shadow-md border border-outline-variant group zoom-img-container block h-[220px] lg:h-full">
+                        <div class="w-full h-[120%] absolute -top-[10%] left-0 dest-img-parallax">
+                            <img alt="De Djawatan" class="w-full h-full object-cover dest-img"
+                                src="assets/images/de_djawatan.jpg" />
+                        </div>
+                        <div
+                            class="absolute inset-0 z-10 bg-gradient-to-t from-black/85 via-black/25 to-transparent flex flex-col justify-end p-5 text-left">
+                            <h3 class="text-white font-headline-md mb-1 text-base font-bold">De Djawatan</h3>
+                            <p class="text-white/80 text-xs font-body-md line-clamp-1">Hutan Trembesi raksasa ala Lord
+                                of the Rings.</p>
+                        </div>
+                    </a>
+
+                    <!-- Card 2: Pulau Bedil -->
+                    <a href="https://wa.me/6289630550000?text=Halo%20Sunrise%20Travels%2C%20saya%20ingin%20memesan%20atau%20tanya%20paket%20tour%20Pulau%20Bedil"
+                        target="_blank"
+                        class="relative rounded-2xl overflow-hidden shadow-md border border-outline-variant group zoom-img-container block h-[220px] lg:h-full">
+                        <div class="w-full h-[120%] absolute -top-[10%] left-0 dest-img-parallax">
+                            <img alt="Pulau Bedil" class="w-full h-full object-cover dest-img"
+                                src="assets/images/pulau_bedil.jpg" />
+                        </div>
+                        <div
+                            class="absolute inset-0 z-10 bg-gradient-to-t from-black/85 via-black/25 to-transparent flex flex-col justify-end p-5 text-left">
+                            <h3 class="text-white font-headline-md mb-1 text-base font-bold">Pulau Bedil</h3>
+                            <p class="text-white/80 text-xs font-body-md line-clamp-1">Surga Tersembunyi di Perairan
+                                Selatan</p>
+                        </div>
+                    </a>
+
+                    <!-- Card 3: Taman Nasional Baluran -->
+                    <a href="https://wa.me/6289630550000?text=Halo%20Sunrise%20Travels%2C%20saya%20ingin%20memesan%20atau%20tanya%20paket%20tour%20Taman%20Nasional%20Baluran"
+                        target="_blank"
+                        class="relative rounded-2xl overflow-hidden shadow-md border border-outline-variant group zoom-img-container block h-[220px] lg:h-full">
+                        <div class="w-full h-[120%] absolute -top-[10%] left-0 dest-img-parallax">
+                            <img alt="Taman Nasional Baluran" class="w-full h-full object-cover dest-img"
+                                src="assets/images/baluran.jpg" />
+                        </div>
+                        <div
+                            class="absolute inset-0 z-10 bg-gradient-to-t from-black/85 via-black/25 to-transparent flex flex-col justify-end p-5 text-left">
+                            <h3 class="text-white font-headline-md mb-1 text-base font-bold">Taman Nasional Baluran</h3>
+                            <p class="text-white/80 text-xs font-body-md line-clamp-1">Keindahan padang sabana luas
+                                mirip Afrika</p>
+                        </div>
+                    </a>
+
+                    <!-- Card 4: Kawah Ijen -->
+                    <a href="https://wa.me/6289630550000?text=Halo%20Sunrise%20Travels%2C%20saya%20ingin%20memesan%20atau%20tanya%20paket%20tour%20Kawah%20Ijen"
+                        target="_blank"
+                        class="relative rounded-2xl overflow-hidden shadow-md border border-outline-variant group zoom-img-container block h-[220px] lg:h-full">
+                        <div class="w-full h-[120%] absolute -top-[10%] left-0 dest-img-parallax">
+                            <img alt="Kawah Ijen" class="w-full h-full object-cover dest-img"
+                                src="assets/images/kawah_ijen.jpg" />
+                        </div>
+                        <div
+                            class="absolute inset-0 z-10 bg-gradient-to-t from-black/85 via-black/25 to-transparent flex flex-col justify-end p-5 text-left">
+                            <h3 class="text-white font-headline-md mb-1 text-base font-bold">Kawah Ijen</h3>
+                            <p class="text-white/80 text-xs font-body-md line-clamp-1">Saksikan kawah asam biru
+                                misterius</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overlapping Card 4: Testimoni -->
+    <section id="testimoni" class="relative z-40 bg-surface-container-low py-20">
+        <div class="max-w-container-max mx-auto px-margin-desktop">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span
+                    class="text-primary font-label-sm uppercase tracking-widest bg-primary-container px-3.5 py-1 rounded-full text-xs font-semibold">Testimoni</span>
+                <h2
+                    class="font-display-lg text-display-lg-mobile md:text-headline-md text-on-surface mt-4 font-extrabold">
+                    Apa Kata Pelanggan Kami</h2>
+                <p class="text-secondary font-body-md mt-2">Dengarkan pengalaman langsung dari para pelanggan yang setia
+                    menggunakan jasa Sunrise Travels.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div
+                    class="bg-white border border-outline-variant rounded-2xl p-8 shadow-sm flex flex-col justify-between hover:shadow-md transition-all text-left">
+                    <div>
+                        <div class="flex items-center gap-1 text-[#FFD700] mb-4">
+                            <span class="material-symbols-outlined text-lg block" data-icon="star">star</span>
+                            <span class="material-symbols-outlined text-lg block" data-icon="star">star</span>
+                            <span class="material-symbols-outlined text-lg block" data-icon="star">star</span>
+                            <span class="material-symbols-outlined text-lg block" data-icon="star">star</span>
+                            <span class="material-symbols-outlined text-lg block" data-icon="star">star</span>
+                        </div>
+                        <p class="text-on-surface-variant italic font-body-md leading-relaxed mb-6">
+                            "Sangat direkomendasikan! Shuttle dari Banyuwangi ke Surabaya tepat waktu dan sangat nyaman.
+                            Mobil bersih dan wangi, drivernya juga ramah."
+                        </p>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div
+                    class="bg-white border border-outline-variant rounded-2xl p-8 shadow-sm flex flex-col justify-between hover:shadow-md transition-all text-left">
+                    <div>
+                        <div class="flex items-center gap-1 text-[#FFD700] mb-4">
+                            <span class="material-symbols-outlined text-lg block" data-icon="star">star</span>
+                            <span class="material-symbols-outlined text-lg block" data-icon="star">star</span>
+                            <span class="material-symbols-outlined text-lg block" data-icon="star">star</span>
+                            <span class="material-symbols-outlined text-lg block" data-icon="star">star</span>
+                            <span class="material-symbols-outlined text-lg block" data-icon="star">star</span>
+                        </div>
+                        <p class="text-on-surface-variant italic font-body-md leading-relaxed mb-6">
+                            "Layanan door-to-door sangat memudahkan saya sebagai mahasiswa. Dijemput langsung depan
+                            rumah di Banyuwangi, diantar sampai depan kosan di Malang."
+                        </p>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div
+                    class="bg-white border border-outline-variant rounded-2xl p-8 shadow-sm flex flex-col justify-between hover:shadow-md transition-all text-left">
+                    <div>
+                        <div class="flex items-center gap-1 text-[#FFD700] mb-4">
+                            <span class="material-symbols-outlined text-lg block" data-icon="star">star</span>
+                            <span class="material-symbols-outlined text-lg block" data-icon="star">star</span>
+                            <span class="material-symbols-outlined text-lg block" data-icon="star">star</span>
+                            <span class="material-symbols-outlined text-lg block" data-icon="star">star</span>
+                            <span class="material-symbols-outlined text-lg block" data-icon="star">star</span>
+                        </div>
+                        <p class="text-on-surface-variant italic font-body-md leading-relaxed mb-6">
+                            "Perjalanan 8 jam terasa sangat cepat karena armada nyaman dan luas. Dapat air mineral botol
+                            dan roti snack juga. Sangat puas dengan layanannya."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overlapping Card 5: Kontak & Lokasi -->
+    <section id="kontak" class="relative z-40 bg-background py-20">
+        <div class="max-w-container-max mx-auto px-margin-desktop">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="flex flex-col gap-4 text-left">
+                    <span
+                        class="text-primary font-label-sm uppercase tracking-widest bg-primary-container px-3.5 py-1 rounded-full text-xs font-semibold w-fit">Hubungi
+                        Kami</span>
+                    <h2
+                        class="font-display-lg text-display-lg-mobile md:text-headline-md text-on-surface mt-4 font-extrabold">
+                        Kunjungi Kantor Kami di Banyuwangi</h2>
+                    <p class="text-body-lg text-on-surface-variant leading-relaxed">
+                        Temukan kami di pusat kota Banyuwangi untuk informasi jadwal, pemesanan langsung, atau
+                        konsultasi armada travel. Kami siap melayani perjalanan Anda 24 jam.
+                    </p>
+                    <div
+                        class="flex items-start gap-3 p-5 bg-white rounded-2xl border border-outline-variant mt-4 shadow-sm">
+                        <span class="material-symbols-outlined text-primary text-2xl block"
+                            data-icon="location_on">location_on</span>
+                        <div>
+                            <h4 class="font-bold text-on-surface text-base mb-1">Alamat Kantor Pusat</h4>
+                            <p class="font-body-md text-secondary text-sm">R93G+732, Jl. Boediono, Singotrunan, Kec.
+                                Banyuwangi, Kabupaten Banyuwangi, Jawa Timur 68414</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="h-[400px] rounded-3xl overflow-hidden shadow-xl border border-outline-variant">
+                    <iframe allowfullscreen="" height="100%" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3948.8872580455855!2d114.36706917578918!3d-8.214115482413155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd14532e850901d%3A0xc34857731f821650!2sJl.%20Boediono%2C%20Singotrunan%2C%20Kec.%20Banyuwangi%2C%20Kabupaten%20Banyuwangi%2C%20Jawa%20Timur%2068414!5e0!3m2!1sid!2sid!4v1715420000000!5m2!1sid!2sid"
+                        class="map-frame" width="100%"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative z-40 bg-on-surface w-full py-16 text-white">
+        <div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-3 gap-12">
+            <!-- Brand & Info -->
+            <div class="flex flex-col gap-4 text-left">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-4xl block"
+                        data-icon="directions_bus">directions_bus</span>
+                    <span class="font-display-lg text-headline-md text-white tracking-tight">Sunrise Travels</span>
+                </div>
+                <p class="text-white/70 font-body-md mt-4 leading-relaxed">
+                    Penyedia layanan transportasi shuttle eksekutif dan travel terpercaya di Jawa Timur. Mengutamakan
+                    kenyamanan, keamanan, dan ketepatan waktu.
+                </p>
+                <div class="flex gap-4 mt-6">
+                    <a class="text-white/80 hover:text-primary transition-colors p-2 bg-white/10 rounded-full"
+                        href="https://instagram.com/sunrisetravels" title="Instagram">
+                        <svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a class="text-white/80 hover:text-primary transition-colors p-2 bg-white/10 rounded-full" href="#"
+                        title="TikTok">
+                        <svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+                            <path
+                                d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.9-.32-1.98-.23-2.81.33-.85.51-1.44 1.43-1.58 2.41-.16.89.03 1.83.54 2.57.54.82 1.45 1.36 2.44 1.44 1.15.07 2.3-.44 3.01-1.36.44-.56.68-1.24.74-1.94.01-4.52-.01-9.04.01-13.56z">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <!-- Quick Links -->
+            <div class="flex flex-col gap-4 text-left">
+                <h4 class="font-headline-md text-white font-bold">Tautan Cepat</h4>
+                <nav class="flex flex-col gap-3">
+                    <a class="text-white/70 hover:text-primary transition-colors text-sm" href="#">Home</a>
+                    <a class="text-white/70 hover:text-primary transition-colors text-sm"
+                        href="#mengapa-kami">Keunggulan</a>
+                    <a class="text-white/70 hover:text-primary transition-colors text-sm" href="#rute">Rute &amp;
+                        Harga</a>
+                    <a class="text-white/70 hover:text-primary transition-colors text-sm"
+                        href="#testimoni">Testimoni</a>
+                    <a class="text-white/70 hover:text-primary transition-colors text-sm" href="#kontak">Hubungi
+                        Kami</a>
+                </nav>
+            </div>
+            <!-- Contact Details -->
+            <div class="flex flex-col gap-4 text-left">
+                <h4 class="font-headline-md text-white font-bold">Hubungi Kami</h4>
+                <div class="flex items-start gap-3 text-white/70 text-sm">
+                    <span class="material-symbols-outlined text-primary text-xl block"
+                        data-icon="location_on">location_on</span>
+                    <span class="">Jl. Boediono, Singotrunan, Banyuwangi, Jawa Timur</span>
+                </div>
+                <div class="flex items-center gap-3 text-white/70 text-sm">
+                    <span class="material-symbols-outlined text-primary text-xl block" data-icon="call">call</span>
+                    <span class="">+62 896-3055-0000</span>
+                </div>
+                <div class="flex items-center gap-3 text-white/70 text-sm">
+                    <span class="material-symbols-outlined text-primary text-xl block" data-icon="mail">mail</span>
+                    <span class="">sunrisetourandtravels9@gmail.com</span>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-container-max mx-auto px-margin-desktop mt-12 pt-8 border-t border-white/10 text-center">
+            <p class="text-white/50 text-xs font-label-sm">© 2026 Sunrise Travels. Hak cipta dilindungi undang-undang.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Booking Details Modal -->
+    <div id="booking-modal"
+        class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 hidden transition-opacity duration-300 opacity-0 select-none">
+        <div
+            class="bg-white rounded-3xl shadow-2xl border border-outline-variant p-6 md:p-8 max-w-md w-full relative transform scale-95 transition-transform duration-300">
+            <!-- Close Button -->
+            <button id="close-booking-modal" type="button"
+                class="absolute top-4 right-4 text-secondary hover:text-on-surface transition-colors">
+                <span class="material-symbols-outlined text-2xl block" data-icon="close">close</span>
+            </button>
+
+            <div class="text-left mb-6">
+                <h3 class="font-display-lg text-2xl font-bold text-on-surface">Detail Penjemputan</h3>
+                <p class="text-secondary text-xs mt-1">Lengkapi alamat penjemputan dan tujuan Anda untuk melanjutkan
+                    pemesanan via WhatsApp.</p>
+            </div>
+
+            <form id="modal-booking-form" class="flex flex-col gap-4 text-left">
+                <!-- Name -->
+                <div class="flex flex-col gap-1.5">
+                    <label for="modal-name-input"
+                        class="font-label-sm text-on-surface-variant text-[10px] font-bold uppercase tracking-wider">Nama
+                        Lengkap</label>
+                    <input id="modal-name-input" type="text" required placeholder="Masukkan nama lengkap Anda"
+                        class="w-full bg-surface-container-low border-outline-variant rounded-xl py-3 px-4 text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all text-sm font-semibold" />
+                </div>
+                <!-- Pickup Address -->
+                <div class="flex flex-col gap-1.5">
+                    <label for="modal-pickup-input"
+                        class="font-label-sm text-on-surface-variant text-[10px] font-bold uppercase tracking-wider">Alamat
+                        Penjemputan</label>
+                    <textarea id="modal-pickup-input" required rows="2"
+                        placeholder="Contoh: Jl. Sudirman No. 25, Banyuwangi"
+                        class="w-full bg-surface-container-low border-outline-variant rounded-xl py-3 px-4 text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all resize-none text-sm font-semibold"></textarea>
+                </div>
+                <!-- Destination Address -->
+                <div class="flex flex-col gap-1.5">
+                    <label for="modal-destination-input"
+                        class="font-label-sm text-on-surface-variant text-[10px] font-bold uppercase tracking-wider">Alamat
+                        Tujuan</label>
+                    <textarea id="modal-destination-input" required rows="2"
+                        placeholder="Contoh: Terminal Bungurasih / Juanda, Surabaya"
+                        class="w-full bg-surface-container-low border-outline-variant rounded-xl py-3 px-4 text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all resize-none text-sm font-semibold"></textarea>
+                </div>
+                <!-- Submit -->
+                <button type="submit"
+                    class="w-full bg-primary text-white font-headline-md py-4 rounded-xl shadow-lg hover:bg-primary/95 transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2 font-bold mt-2 text-sm md:text-base">
+                    Lanjutkan ke WhatsApp
+                    <span class="material-symbols-outlined text-lg" data-icon="chat">chat</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Fixed WhatsApp Floating CTA -->
+    <a class="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl flex items-center gap-2 hover:scale-110 transition-transform md:px-6"
+        href="https://wa.me/6289630550000">
+        <svg class="w-6 h-6 fill-current" viewbox="0 0 24 24">
+            <path
+                d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.185-.573c.948.517 2.035.808 3.145.808 3.181 0 5.767-2.584 5.768-5.764 0-3.18-2.586-5.763-5.767-5.763zm3.38 8.161c-.147.415-.852.763-1.176.811-.324.049-.728.067-1.176-.076-.285-.091-.645-.221-1.096-.419-1.921-.843-3.155-2.822-3.251-2.951-.096-.129-.78-.999-.78-1.996 0-.996.521-1.488.706-1.691.185-.202.404-.253.539-.253.135 0 .27 0 .387.005.122.005.286-.046.448.344.167.4.57 1.391.62 1.492.05.101.084.219.017.354-.067.135-.101.219-.202.337-.101.118-.212.264-.303.354-.101.101-.207.211-.089.415.118.204.526.868 1.129 1.403.778.69 1.433.905 1.636 1.006.204.101.324.084.444-.051.12-.135.521-.607.658-.81.135-.204.27-.169.456-.101.185.068 1.179.556 1.381.657.202.101.337.151.387.236.05.084.05.49-.097.905zM12 0C5.373 0 0 5.373 0 12c0 2.123.55 4.12 1.52 5.857L.085 24l6.299-1.654C8.027 23.407 9.943 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z">
+            </path>
+        </svg>
+        <span class="hidden md:inline font-label-sm font-bold">WhatsApp Admin</span>
+    </a>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="app.js?v=17834102" defer></script>
+</body>
+
+</html>
