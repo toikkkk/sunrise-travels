@@ -348,12 +348,12 @@ Mohon diproses untuk ketersediaan kursi. Terima kasih!`;
     handleScroll(); // Initial check on load
     applyImageParallax(); // Initial positioning on load
 
-    // IntersectionObserver scroll reveal for cards
+    // IntersectionObserver scroll reveal for cards and sections
     if ('IntersectionObserver' in window) {
         const revealOptions = {
             root: null,
-            rootMargin: '0px 0px -65px 0px', // Trigger slightly before coming fully into view
-            threshold: 0.08
+            rootMargin: '0px 0px -80px 0px', // Trigger slightly before coming fully into view
+            threshold: 0.05
         };
         const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
@@ -364,13 +364,92 @@ Mohon diproses untuk ketersediaan kursi. Terima kasih!`;
             });
         }, revealOptions);
 
-        document.querySelectorAll('.lift-card, .zoom-img-container').forEach(card => {
-            card.classList.add('reveal-card');
-            revealObserver.observe(card);
+        document.querySelectorAll('.lift-card, .zoom-img-container, .scroll-reveal').forEach(el => {
+            if (!el.classList.contains('scroll-reveal')) {
+                el.classList.add('reveal-card');
+            }
+            revealObserver.observe(el);
         });
     } else {
-        document.querySelectorAll('.lift-card, .zoom-img-container').forEach(card => {
-            card.classList.add('active');
+        document.querySelectorAll('.lift-card, .zoom-img-container, .scroll-reveal').forEach(el => {
+            el.classList.add('active');
+        });
+    }
+
+    // Circular View Transition Theme Toggler (Vanilla JS implementation of React AnimatedThemeToggler)
+    const themeBtn = document.getElementById('theme-toggle-btn');
+    const themeIcon = document.getElementById('theme-toggle-icon');
+    let isThemeTransitioning = false;
+
+    // Check system preference or localStorage on mount
+    if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        if (themeIcon) themeIcon.textContent = 'light_mode';
+    } else {
+        document.documentElement.classList.remove('dark');
+        if (themeIcon) themeIcon.textContent = 'dark_mode';
+    }
+
+    if (themeBtn && themeIcon) {
+        themeBtn.addEventListener('click', async () => {
+            if (isThemeTransitioning) return;
+            isThemeTransitioning = true;
+
+            const isDark = document.documentElement.classList.contains('dark');
+            const nextTheme = isDark ? 'light' : 'dark';
+
+            const toggleTheme = () => {
+                if (nextTheme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                    themeIcon.textContent = 'light_mode';
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    themeIcon.textContent = 'dark_mode';
+                    localStorage.setItem('theme', 'light');
+                }
+            };
+
+            // Browser supports the View Transitions API
+            if (document.startViewTransition) {
+                try {
+                    const transition = document.startViewTransition(() => {
+                        toggleTheme();
+                    });
+
+                    await transition.ready;
+
+                    const rect = themeBtn.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+                    const maxDistance = Math.hypot(
+                        Math.max(centerX, window.innerWidth - centerX),
+                        Math.max(centerY, window.innerHeight - centerY)
+                    );
+
+                    document.documentElement.animate(
+                        {
+                            clipPath: [
+                                `circle(0px at ${centerX}px ${centerY}px)`,
+                                `circle(${maxDistance}px at ${centerX}px ${centerY}px)`,
+                            ],
+                        },
+                        {
+                            duration: 700,
+                            easing: 'ease-in-out',
+                            pseudoElement: '::view-transition-new(root)',
+                        }
+                    );
+                } catch (e) {
+                    toggleTheme();
+                } finally {
+                    isThemeTransitioning = false;
+                }
+            } else {
+                // Fallback for browsers that don't support View Transitions API
+                toggleTheme();
+                isThemeTransitioning = false;
+            }
         });
     }
 });

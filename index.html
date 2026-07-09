@@ -10,7 +10,7 @@
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&amp;display=block"
         rel="stylesheet" />
-    <link rel="stylesheet" href="style.css?v=17834104" />
+    <link rel="stylesheet" href="style.css?v=17834113" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script src="tailwind-config.js"></script>
 </head>
@@ -31,7 +31,7 @@
     </div>
 
     <!-- Header Navbar -->
-    <header class="fixed top-0 w-full z-50 bg-transparent border-b border-white/10 py-4">
+    <header class="fixed top-0 w-full z-50 bg-transparent border-b border-white/10 py-4 animate-fade-in">
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex items-center justify-between h-16">
             <a href="#" class="flex items-center gap-2">
                 <span class="material-symbols-outlined text-white text-3xl nav-logo transition-colors"
@@ -40,7 +40,10 @@
                     class="font-display-lg text-headline-md text-white tracking-tight nav-logo-text transition-colors">Sunrise
                     Travels</span>
             </a>
-            <div>
+            <div class="flex items-center gap-3">
+                <button id="theme-toggle-btn" type="button" class="p-2.5 rounded-full border border-white/20 text-white hover:bg-white/10 transition-all flex items-center justify-center theme-toggle-btn" aria-label="Toggle theme">
+                    <span id="theme-toggle-icon" class="material-symbols-outlined text-base md:text-lg block select-none" data-icon="dark_mode">dark_mode</span>
+                </button>
                 <a class="px-5 py-2 md:px-6 md:py-2.5 border border-white text-white rounded-full hover:bg-white hover:text-primary transition-all duration-200 header-cta font-semibold text-xs md:text-sm"
                     href="https://wa.me/6289630550000?text=Halo%20Sunrise%20Travels%2C%20saya%20ingin%20tanya%20informasi%20mengenai%20layanan%20travel%20dan%20shuttle.">Hubungi Kami</a>
             </div>
@@ -52,7 +55,7 @@
         class="relative md:sticky top-0 w-full z-10 min-h-screen flex items-center pt-24 pb-12 px-margin-mobile md:px-margin-desktop overflow-hidden">
         <!-- Hero Background -->
         <div class="absolute inset-0 z-0">
-            <div class="w-full h-full bg-cover bg-center hero-bg"></div>
+            <div class="w-full h-full bg-cover bg-center hero-bg animate-hero-load"></div>
             <div class="absolute inset-0 hero-gradient"></div>
         </div>
 
@@ -60,29 +63,56 @@
         <div
             class="relative z-10 w-full max-w-4xl mx-auto px-margin-mobile md:px-margin-desktop text-center flex flex-col items-center justify-center min-h-[50vh]">
             <!-- Copywriting -->
-            <div class="flex flex-col items-center text-center text-white animate-slide-up">
+            <div class="flex flex-col items-center text-center text-white">
                 <h1
-                    class="font-display-lg text-4xl md:text-6xl text-white mb-4 drop-shadow-lg font-bold tracking-tight max-w-4xl">
+                    class="font-display-lg text-4xl md:text-6xl text-white mb-4 drop-shadow-lg font-bold tracking-tight max-w-4xl animate-slide-up">
                     Sunrise Travels
                 </h1>
                 <div
-                    class="flex items-center justify-center gap-2 md:gap-3 mb-6 w-full max-w-lg mx-auto flex-nowrap overflow-visible select-none">
-                    <span
-                        class="border border-white/25 bg-white/15 backdrop-blur-md px-2.5 py-1.5 rounded-xl text-white font-bold text-[9px] md:text-xs md:px-3.5 md:py-2 tracking-wider uppercase whitespace-nowrap shadow-md">Banyuwangi</span>
-                    <span class="material-symbols-outlined text-primary text-base md:text-lg font-bold block"
-                        data-icon="arrow_right_alt">arrow_right_alt</span>
-                    <span
-                        class="border border-white/25 bg-white/15 backdrop-blur-md px-2.5 py-1.5 rounded-xl text-white font-bold text-[9px] md:text-xs md:px-3.5 md:py-2 tracking-wider uppercase whitespace-nowrap shadow-md">Surabaya</span>
-                    <span class="material-symbols-outlined text-primary text-base md:text-lg font-bold block"
-                        data-icon="arrow_right_alt">arrow_right_alt</span>
-                    <span
-                        class="border border-white/25 bg-white/15 backdrop-blur-md px-2.5 py-1.5 rounded-xl text-white font-bold text-[9px] md:text-xs md:px-3.5 md:py-2 tracking-wider uppercase whitespace-nowrap shadow-md">Malang</span>
+                    class="flex items-center justify-center gap-1.5 md:gap-3 mb-6 w-full max-w-lg mx-auto flex-nowrap overflow-visible select-none animate-slide-up delay-150">
+                    <!-- Badge 1: Banyuwangi -->
+                    <div class="relative group">
+                        <div class="absolute inset-0 bg-white/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <span
+                            class="relative border border-white/20 bg-white/10 backdrop-blur-lg px-3 py-1.5 rounded-full text-white font-extrabold text-[9px] md:text-xs md:px-4 md:py-2 tracking-[0.12em] uppercase whitespace-nowrap shadow-[0_8px_32px_0_rgba(0,0,0,0.25)] transition-all duration-300 hover:bg-white/20 hover:border-white/30 hover:-translate-y-0.5 flex items-center gap-1.5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                            Banyuwangi
+                        </span>
+                    </div>
+
+                    <!-- Divider -->
+                    <span class="material-symbols-outlined text-white/40 text-xs md:text-sm font-bold block select-none"
+                        data-icon="chevron_right">chevron_right</span>
+
+                    <!-- Badge 2: Surabaya -->
+                    <div class="relative group">
+                        <div class="absolute inset-0 bg-white/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <span
+                            class="relative border border-white/20 bg-white/10 backdrop-blur-lg px-3 py-1.5 rounded-full text-white font-extrabold text-[9px] md:text-xs md:px-4 md:py-2 tracking-[0.12em] uppercase whitespace-nowrap shadow-[0_8px_32px_0_rgba(0,0,0,0.25)] transition-all duration-300 hover:bg-white/20 hover:border-white/30 hover:-translate-y-0.5 flex items-center gap-1.5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-white/40"></span>
+                            Surabaya
+                        </span>
+                    </div>
+
+                    <!-- Divider -->
+                    <span class="material-symbols-outlined text-white/40 text-xs md:text-sm font-bold block select-none"
+                        data-icon="chevron_right">chevron_right</span>
+
+                    <!-- Badge 3: Malang -->
+                    <div class="relative group">
+                        <div class="absolute inset-0 bg-white/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <span
+                            class="relative border border-white/20 bg-white/10 backdrop-blur-lg px-3 py-1.5 rounded-full text-white font-extrabold text-[9px] md:text-xs md:px-4 md:py-2 tracking-[0.12em] uppercase whitespace-nowrap shadow-[0_8px_32px_0_rgba(0,0,0,0.25)] transition-all duration-300 hover:bg-white/20 hover:border-white/30 hover:-translate-y-0.5 flex items-center gap-1.5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-white/40"></span>
+                            Malang
+                        </span>
+                    </div>
                 </div>
-                <p class="font-body-lg text-white/85 max-w-xl mb-8 leading-relaxed drop-shadow-md text-sm md:text-base">
+                <p class="font-body-lg text-white/85 max-w-xl mb-8 leading-relaxed drop-shadow-md text-sm md:text-base animate-slide-up delay-300">
                     Nikmati perjalanan antar kota terbaik dengan armada premium. Layanan door-to-door
                     harian yang aman, nyaman, dan selalu tepat waktu untuk Anda.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 mb-8 w-full sm:w-auto justify-center">
+                <div class="flex flex-col sm:flex-row gap-4 mb-8 w-full sm:w-auto justify-center animate-slide-up delay-450">
                     <a href="https://wa.me/6289630550000?text=Halo%20Sunrise%20Travels%2C%20saya%20ingin%20pesan%20tiket%20shuttle%20eksekutif."
                         class="flex items-center justify-center gap-2 bg-primary text-white text-sm md:text-base px-6 py-3 rounded-full hover:bg-primary/90 transition-all transform hover:scale-105 active:scale-95 shadow-lg font-bold">
                         Pesan Tiket Sekarang
@@ -169,7 +199,7 @@
     <!-- Overlapping Card 2: Rute & Harga -->
     <section id="rute" class="relative z-30 bg-surface-container-low shadow-overlay rounded-t-[40px] -mt-10 py-12">
         <div class="max-w-container-max mx-auto px-margin-desktop">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4 scroll-reveal">
                 <div class="max-w-xl text-left">
                     <span
                         class="text-primary font-label-sm uppercase tracking-widest bg-primary-container px-3.5 py-1 rounded-full text-xs font-semibold">Destinasi
@@ -221,7 +251,7 @@
                 </div>
                 <!-- Card 2 -->
                 <div
-                    class="bg-white p-6 rounded-2xl shadow-sm border border-outline-variant hover:border-primary transition-all duration-300 group cursor-pointer hover:shadow-xl lift-card text-left">
+                    class="bg-white p-6 rounded-2xl shadow-sm border border-outline-variant hover:border-primary transition-all duration-300 group cursor-pointer hover:shadow-xl lift-card text-left delay-150">
                     <div
                         class="bg-surface-container p-3 rounded-lg w-fit mb-4 group-hover:bg-primary-fixed transition-colors">
                         <span class="material-symbols-outlined text-primary text-xl block"
@@ -256,7 +286,7 @@
     <!-- Overlapping Card 3: Inspirasi Perjalanan -->
     <section id="destinasi" class="relative z-40 bg-background shadow-overlay rounded-t-[40px] -mt-10 py-20">
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-            <div class="text-center max-w-2xl mx-auto mb-12">
+            <div class="text-center max-w-2xl mx-auto mb-12 scroll-reveal">
                 <h2
                     class="font-display-lg text-display-lg-mobile md:text-[32px] text-on-surface font-extrabold tracking-tight">
                     Inspirasi Perjalanan</h2>
@@ -267,7 +297,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 max-w-5xl mx-auto items-stretch">
                 <!-- Left Column: Big Card (Pulau Merah) -->
                 <div
-                    class="lg:col-span-5 relative rounded-2xl overflow-hidden h-[300px] lg:h-[480px] shadow-md border border-outline-variant group zoom-img-container">
+                    class="lg:col-span-5 relative rounded-2xl overflow-hidden h-[300px] lg:h-[480px] shadow-md border border-outline-variant group zoom-img-container delay-100">
                     <div class="w-full h-[120%] absolute -top-[10%] left-0 dest-img-parallax">
                         <img alt="Pulau Merah" class="w-full h-full object-cover dest-img"
                             src="assets/images/pulau_merah.jpg" />
@@ -293,7 +323,7 @@
                     <!-- Card 1: De Djawatan -->
                     <a href="https://wa.me/6289630550000?text=Halo%20Sunrise%20Travels%2C%20saya%20ingin%20memesan%20atau%20tanya%20paket%20tour%20De%20Djawatan"
                         target="_blank"
-                        class="relative rounded-2xl overflow-hidden shadow-md border border-outline-variant group zoom-img-container block h-[220px] lg:h-full">
+                        class="relative rounded-2xl overflow-hidden shadow-md border border-outline-variant group zoom-img-container block h-[220px] lg:h-full delay-150">
                         <div class="w-full h-[120%] absolute -top-[10%] left-0 dest-img-parallax">
                             <img alt="De Djawatan" class="w-full h-full object-cover dest-img"
                                 src="assets/images/de_djawatan.jpg" />
@@ -309,7 +339,7 @@
                     <!-- Card 2: Pulau Bedil -->
                     <a href="https://wa.me/6289630550000?text=Halo%20Sunrise%20Travels%2C%20saya%20ingin%20memesan%20atau%20tanya%20paket%20tour%20Pulau%20Bedil"
                         target="_blank"
-                        class="relative rounded-2xl overflow-hidden shadow-md border border-outline-variant group zoom-img-container block h-[220px] lg:h-full">
+                        class="relative rounded-2xl overflow-hidden shadow-md border border-outline-variant group zoom-img-container block h-[220px] lg:h-full delay-200">
                         <div class="w-full h-[120%] absolute -top-[10%] left-0 dest-img-parallax">
                             <img alt="Pulau Bedil" class="w-full h-full object-cover dest-img"
                                 src="assets/images/pulau_bedil.jpg" />
@@ -325,7 +355,7 @@
                     <!-- Card 3: Taman Nasional Baluran -->
                     <a href="https://wa.me/6289630550000?text=Halo%20Sunrise%20Travels%2C%20saya%20ingin%20memesan%20atau%20tanya%20paket%20tour%20Taman%20Nasional%20Baluran"
                         target="_blank"
-                        class="relative rounded-2xl overflow-hidden shadow-md border border-outline-variant group zoom-img-container block h-[220px] lg:h-full">
+                        class="relative rounded-2xl overflow-hidden shadow-md border border-outline-variant group zoom-img-container block h-[220px] lg:h-full delay-250">
                         <div class="w-full h-[120%] absolute -top-[10%] left-0 dest-img-parallax">
                             <img alt="Taman Nasional Baluran" class="w-full h-full object-cover dest-img"
                                 src="assets/images/baluran.jpg" />
@@ -341,7 +371,7 @@
                     <!-- Card 4: Kawah Ijen -->
                     <a href="https://wa.me/6289630550000?text=Halo%20Sunrise%20Travels%2C%20saya%20ingin%20memesan%20atau%20tanya%20paket%20tour%20Kawah%20Ijen"
                         target="_blank"
-                        class="relative rounded-2xl overflow-hidden shadow-md border border-outline-variant group zoom-img-container block h-[220px] lg:h-full">
+                        class="relative rounded-2xl overflow-hidden shadow-md border border-outline-variant group zoom-img-container block h-[220px] lg:h-full delay-300">
                         <div class="w-full h-[120%] absolute -top-[10%] left-0 dest-img-parallax">
                             <img alt="Kawah Ijen" class="w-full h-full object-cover dest-img"
                                 src="assets/images/kawah_ijen.jpg" />
@@ -361,7 +391,7 @@
     <!-- Overlapping Card 4: Testimoni -->
     <section id="testimoni" class="relative z-40 bg-surface-container-low py-20">
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-            <div class="text-center max-w-2xl mx-auto mb-16">
+            <div class="text-center max-w-2xl mx-auto mb-16 scroll-reveal">
                 <span
                     class="text-primary font-label-sm uppercase tracking-widest bg-primary-container px-3.5 py-1 rounded-full text-xs font-semibold">Testimoni</span>
                 <h2
@@ -374,7 +404,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Testimonial 1 -->
                 <div
-                    class="bg-white border border-outline-variant rounded-2xl p-8 shadow-sm flex flex-col justify-between hover:shadow-md transition-all text-left">
+                    class="bg-white border border-outline-variant rounded-2xl p-8 shadow-sm flex flex-col justify-between hover:shadow-md transition-all text-left scroll-reveal">
                     <div>
                         <div class="flex items-center gap-1 text-[#FFD700] mb-4">
                             <span class="material-symbols-outlined text-lg block" data-icon="star">star</span>
@@ -391,7 +421,7 @@
                 </div>
                 <!-- Testimonial 2 -->
                 <div
-                    class="bg-white border border-outline-variant rounded-2xl p-8 shadow-sm flex flex-col justify-between hover:shadow-md transition-all text-left">
+                    class="bg-white border border-outline-variant rounded-2xl p-8 shadow-sm flex flex-col justify-between hover:shadow-md transition-all text-left scroll-reveal delay-150">
                     <div>
                         <div class="flex items-center gap-1 text-[#FFD700] mb-4">
                             <span class="material-symbols-outlined text-lg block" data-icon="star">star</span>
@@ -408,7 +438,7 @@
                 </div>
                 <!-- Testimonial 3 -->
                 <div
-                    class="bg-white border border-outline-variant rounded-2xl p-8 shadow-sm flex flex-col justify-between hover:shadow-md transition-all text-left">
+                    class="bg-white border border-outline-variant rounded-2xl p-8 shadow-sm flex flex-col justify-between hover:shadow-md transition-all text-left scroll-reveal delay-300">
                     <div>
                         <div class="flex items-center gap-1 text-[#FFD700] mb-4">
                             <span class="material-symbols-outlined text-lg block" data-icon="star">star</span>
@@ -431,7 +461,7 @@
     <section id="kontak" class="relative z-40 bg-background py-20">
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div class="flex flex-col gap-4 text-left">
+                <div class="flex flex-col gap-4 text-left scroll-reveal">
                     <span
                         class="text-primary font-label-sm uppercase tracking-widest bg-primary-container px-3.5 py-1 rounded-full text-xs font-semibold w-fit">Hubungi
                         Kami</span>
@@ -453,7 +483,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="h-[400px] rounded-3xl overflow-hidden shadow-xl border border-outline-variant">
+                <div class="h-[400px] rounded-3xl overflow-hidden shadow-xl border border-outline-variant scroll-reveal delay-200">
                     <iframe allowfullscreen="" height="100%" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3948.8872580455855!2d114.36706917578918!3d-8.214115482413155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd14532e850901d%3A0xc34857731f821650!2sJl.%20Boediono%2C%20Singotrunan%2C%20Kec.%20Banyuwangi%2C%20Kabupaten%20Banyuwangi%2C%20Jawa%20Timur%2068414!5e0!3m2!1sid!2sid!4v1715420000000!5m2!1sid!2sid"
                         class="map-frame" width="100%"></iframe>
@@ -602,7 +632,7 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-    <script src="app.js?v=17834104" defer></script>
+    <script src="app.js?v=17834113" defer></script>
 </body>
 
 </html>

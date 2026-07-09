@@ -38,20 +38,43 @@
 
 .animate-fade-in {
     opacity: 0;
-    animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .animate-slide-up {
     opacity: 0;
-    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Animation Delays */
 .delay-100 {
     animation-delay: 100ms;
 }
+.delay-150 {
+    animation-delay: 150ms;
+}
 .delay-200 {
     animation-delay: 200ms;
+}
+.delay-300 {
+    animation-delay: 300ms;
+}
+.delay-450 {
+    animation-delay: 450ms;
+}
+
+/* Cinematic scale down animation for Hero Background image on initial load */
+@keyframes scaleDownHero {
+    from {
+        transform: scale(1.08);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.animate-hero-load {
+    animation: scaleDownHero 2.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Header scroll transition */
@@ -79,8 +102,12 @@ header.scrolled .nav-link {
 header.scrolled .nav-link:hover {
     color: #E05A00 !important;
 }
-header.scrolled .menu-toggle-btn {
+header.scrolled .theme-toggle-btn {
     color: #0B121F !important;
+    border-color: rgba(11, 18, 31, 0.2) !important;
+}
+header.scrolled .theme-toggle-btn:hover {
+    background-color: rgba(11, 18, 31, 0.08) !important;
 }
 header.scrolled .header-cta {
     background-color: #E05A00 !important;
@@ -123,11 +150,97 @@ header.scrolled .header-cta {
 .reveal-card {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal-card.active {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Generalized Section Scroll Reveal */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+}
+.scroll-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Global Dark Mode Style Overrides */
+html.dark body {
+    background-color: #1A1D24;
+    color: #E6E9F0;
+}
+
+html.dark .bg-background {
+    background-color: #1A1D24 !important;
+}
+
+html.dark .text-on-surface {
+    color: #E6E9F0 !important;
+}
+
+html.dark .text-on-surface-variant {
+    color: #9CA6BA !important;
+}
+
+html.dark .text-secondary {
+    color: #D1D5DB !important;
+}
+
+html.dark .bg-white {
+    background-color: #242831 !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .bg-surface-container {
+    background-color: #242831 !important;
+}
+
+html.dark .bg-surface-container-low {
+    background-color: #1E2129 !important;
+}
+
+html.dark .border-outline-variant {
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark input, html.dark select {
+    background-color: #2A2F3B !important;
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Scrolled Header Dark Mode Adjustments */
+html.dark header.scrolled {
+    background-color: rgba(26, 29, 36, 0.95) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+html.dark header.scrolled .nav-logo-text {
+    color: #E6E9F0 !important;
+}
+html.dark header.scrolled .theme-toggle-btn {
+    color: #E6E9F0 !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+}
+html.dark header.scrolled .theme-toggle-btn:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Custom Circular View Transition Overrides */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+    z-index: 1;
+}
+::view-transition-new(root) {
+    z-index: 9999;
 }
 
 
