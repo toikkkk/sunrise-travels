@@ -132,6 +132,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputDate = document.getElementById('booking-date-input');
     const searchBtn = document.getElementById('search-schedules-btn');
 
+    // Pre-fill date picker with today's date automatically on page load to prevent empty field on mobile
+    if (inputDate) {
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const dd = String(today.getDate()).padStart(2, '0');
+        const todayStr = `${yyyy}-${mm}-${dd}`;
+        inputDate.value = todayStr;
+        inputDate.min = todayStr; // Prevent booking past dates
+    }
+
     const bookingModal = document.getElementById('booking-modal');
     const closeBookingModalBtn = document.getElementById('close-booking-modal');
     const modalBookingForm = document.getElementById('modal-booking-form');
