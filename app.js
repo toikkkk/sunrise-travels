@@ -318,14 +318,10 @@ Mohon diproses untuk ketersediaan kursi. Terima kasih!`;
             applyVelocitySkew(scrolled);
             applyImageParallax();
             
-            // Parallax velocity scroll on Hero background (Desktop only)
+            // Parallax velocity scroll on Hero background (Mobile & Desktop)
             const heroBg = document.querySelector('.hero-bg');
             if (heroBg) {
-                if (window.innerWidth >= 768) {
-                    heroBg.style.transform = `translate3d(0, ${scrolled * 0.35}px, 0)`;
-                } else {
-                    heroBg.style.transform = 'none';
-                }
+                heroBg.style.transform = `translate3d(0, ${scrolled * 0.35}px, 0)`;
             }
         });
     } else {
@@ -335,13 +331,10 @@ Mohon diproses untuk ketersediaan kursi. Terima kasih!`;
             applyVelocitySkew(scrolled);
             applyImageParallax();
             
+            // Parallax velocity scroll on Hero background (Mobile & Desktop)
             const heroBg = document.querySelector('.hero-bg');
             if (heroBg) {
-                if (window.innerWidth >= 768) {
-                    heroBg.style.transform = `translate3d(0, ${scrolled * 0.35}px, 0)`;
-                } else {
-                    heroBg.style.transform = 'none';
-                }
+                heroBg.style.transform = `translate3d(0, ${scrolled * 0.35}px, 0)`;
             }
         });
     }
