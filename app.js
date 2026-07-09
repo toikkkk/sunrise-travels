@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.getElementById('next-btn');
     const prevBtn = document.getElementById('prev-btn');
     let currentIdx = 0;
-    
+
     if (track && nextBtn && prevBtn) {
         const updateCarousel = () => {
             track.style.transform = `translateX(-${currentIdx * 100}%)`;
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Auto slide cycle (5 seconds)
         let autoSlideInterval;
-        
+
         const startAutoSlide = () => {
             stopAutoSlide();
             autoSlideInterval = setInterval(() => {
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const showToast = (message) => {
         if (!errorToast || !errorToastMsg) return;
-        
+
         errorToastMsg.textContent = message;
         clearTimeout(toastTimeout);
 
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showToast('Silakan pilih tanggal keberangkatan terlebih dahulu.');
             return;
         }
-        
+
         bookingModal.classList.remove('hidden');
         // Trigger smooth fade and zoom transition
         setTimeout(() => {
@@ -209,7 +209,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const dateObj = new Date(dateValue);
                 const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
                 formattedDate = dateObj.toLocaleDateString('id-ID', options);
-            } catch (err) {}
+            } catch (err) { }
+
+            // Google Apps Script Web App URL placeholder
+            // Ganti URL di bawah ini dengan URL hasil deploy Aplikasi Web Google Apps Script Anda
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbwisRMfhgbgcAcmvVGWLxghydaIHdoLN8zt8dQhpj1fSG7ctuwIPSPRA6vxu8BkYk4_/exec';
+            const confirmLink = `${scriptUrl}?nama=${encodeURIComponent(nameVal)}&rute=${encodeURIComponent(routeText)}&tgl=${encodeURIComponent(dateValue)}&alamat=${encodeURIComponent(pickupVal + ' -> ' + destinationVal)}&penumpang=${encodeURIComponent(passengersText)}`;
 
             const message = `Halo Sunrise Travels, saya ingin memesan tiket shuttle:
 
@@ -221,11 +226,15 @@ document.addEventListener('DOMContentLoaded', () => {
 • Penjemputan: ${pickupVal}
 • Tujuan: ${destinationVal}
 
-Mohon diproses untuk ketersediaan kursi. Terima kasih!`;
+Mohon diproses untuk ketersediaan kursi. Terima kasih!
+
+---
+*KHUSUS ADMIN (Klik jika sudah transfer):*
+${confirmLink}`;
 
             const whatsappUrl = `https://wa.me/6289630550000?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
-            
+
             // Reset form and close
             modalBookingForm.reset();
             closeBookingModal();
@@ -250,18 +259,18 @@ Mohon diproses untuk ketersediaan kursi. Terima kasih!`;
 
     const applyVelocitySkew = (scrolled) => {
         if (window.innerWidth < 768) return;
-        
+
         velocity = scrolled - lastScrollTop;
         lastScrollTop = scrolled <= 0 ? 0 : scrolled;
-        
+
         // Clamp skew angle between -3.5deg and 3.5deg
         const skew = Math.min(Math.max(velocity * 0.03, -3.5), 3.5);
-        
+
         velocityCards.forEach(card => {
             card.style.transform = `skewY(${skew}deg)`;
             card.style.transition = 'transform 0.08s ease';
         });
-        
+
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
             velocityCards.forEach(card => {
@@ -280,13 +289,13 @@ Mohon diproses untuk ketersediaan kursi. Terima kasih!`;
             });
             return;
         }
-        
+
         const viewportHeight = window.innerHeight;
         parallaxImages.forEach(img => {
             const rect = img.parentElement.getBoundingClientRect();
             const cardTop = rect.top;
             const cardHeight = rect.height;
-            
+
             if (cardTop + cardHeight > 0 && cardTop < viewportHeight) {
                 const scrollPercent = (cardTop + cardHeight) / (viewportHeight + cardHeight);
                 const yTranslation = (scrollPercent - 0.5) * 36; // Range of motion roughly -18px to 18px
@@ -317,7 +326,7 @@ Mohon diproses untuk ketersediaan kursi. Terima kasih!`;
             const scrolled = window.scrollY;
             applyVelocitySkew(scrolled);
             applyImageParallax();
-            
+
             // Parallax velocity scroll on Hero background (Mobile & Desktop)
             const heroBg = document.querySelector('.hero-bg');
             if (heroBg) {
@@ -330,7 +339,7 @@ Mohon diproses untuk ketersediaan kursi. Terima kasih!`;
             const scrolled = window.scrollY;
             applyVelocitySkew(scrolled);
             applyImageParallax();
-            
+
             // Parallax velocity scroll on Hero background (Mobile & Desktop)
             const heroBg = document.querySelector('.hero-bg');
             if (heroBg) {

@@ -243,5 +243,16 @@ html.dark header.scrolled .theme-toggle-btn:hover {
     z-index: 9999;
 }
 
+/* Hide native webkit calendar icon and make it overlay on custom icon for seamless click trigger */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 3rem;
+    height: 100%;
+    cursor: pointer;
+}
+
 
 
