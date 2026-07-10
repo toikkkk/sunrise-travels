@@ -221,9 +221,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             let passengerCount = 1;
-            if (passengersText.includes('2')) passengerCount = 2;
-            else if (passengersText.includes('3')) passengerCount = 3;
-            else if (passengersText.includes('4')) passengerCount = 4;
+            const passengerMatch = passengersText.match(/\d+/);
+            if (passengerMatch) {
+                passengerCount = parseInt(passengerMatch[0], 10);
+            }
 
             const totalPrice = pricePerTicket * passengerCount;
             const formattedTotal = new Intl.NumberFormat('id-ID', {
