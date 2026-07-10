@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const scriptUrl = 'https://script.google.com/macros/s/AKfycbwisRMfhgbgcAcmvVGWLxghydaIHdoLN8zt8dQhpj1fSG7ctuwIPSPRA6vxu8BkYk4_/exec';
             const confirmLink = `${scriptUrl}?nama=${encodeURIComponent(nameVal)}&rute=${encodeURIComponent(routeText)}&tgl=${encodeURIComponent(dateValue)}&alamat=${encodeURIComponent(pickupVal + ' -> ' + destinationVal)}&penumpang=${encodeURIComponent(passengersText)}&total=${encodeURIComponent(formattedTotal)}`;
 
-            const message = `Halo Sunrise Travels, saya ingin memesan tiket shuttle:
+            const message = `Halo Sunrise Travels, saya ingin memesan tiket travel:
 
 📝 *Detail Pemesanan:*
 • Nama: ${nameVal}

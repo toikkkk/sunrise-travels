@@ -10,7 +10,7 @@
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&amp;display=block"
         rel="stylesheet" />
-    <link rel="stylesheet" href="style.css?v=17834123" />
+    <link rel="stylesheet" href="style.css?v=17834126" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script src="tailwind-config.js"></script>
 </head>
@@ -215,7 +215,7 @@
                     <h2 class="font-display-lg text-2xl md:text-[32px] text-on-surface mt-2 font-bold tracking-tight">
                         Rute Terpopuler &amp; Harga Tarif</h2>
                     <p class="text-secondary font-body-md mt-1.5 text-sm">Pilih rute perjalanan Anda dengan armada
-                        shuttle terbaik. Harga kompetitif dengan layanan berkelas.</p>
+                        travel terbaik. Harga kompetitif dengan layanan berkelas.</p>
                 </div>
                 <a href="https://wa.me/6289630550000?text=Halo%20Sunrise%20Travels%2C%20saya%20ingin%20tanya%20mengenai%20jadwal%20dan%20rute"
                     class="text-primary font-label-sm flex items-center gap-1 group font-bold text-xs md:text-sm">
@@ -225,66 +225,134 @@
                 </a>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                <!-- Card 1 -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-container-max mx-auto px-4">
+                <!-- Card 1: BWI -> SBY -->
                 <div
-                    class="bg-white p-6 rounded-2xl shadow-sm border border-outline-variant hover:border-primary transition-all duration-300 group cursor-pointer hover:shadow-xl lift-card text-left">
+                    class="bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-outline-variant hover:border-primary transition-all duration-300 group cursor-pointer hover:shadow-xl lift-card text-left">
                     <div
-                        class="bg-surface-container p-3 rounded-lg w-fit mb-4 group-hover:bg-primary-fixed transition-colors">
-                        <span class="material-symbols-outlined text-primary text-xl block"
+                        class="bg-surface-container p-2.5 rounded-lg w-fit mb-3 group-hover:bg-primary-fixed transition-colors">
+                        <span class="material-symbols-outlined text-primary text-lg block"
                             data-icon="location_on">location_on</span>
                     </div>
-                    <h3 class="font-headline-md text-on-surface mb-0.5 text-lg font-bold">BWI → SBY</h3>
-                    <p class="text-label-sm text-secondary mb-4 text-xs">Banyuwangi - Surabaya (PP)</p>
-                    <div class="flex items-baseline gap-1 mb-4 border-b border-outline-variant pb-4">
-                        <span class="text-body-md text-on-surface-variant text-xs">Mulai</span>
-                        <span class="text-2xl text-primary font-extrabold">IDR 280k</span>
-                        <span class="text-secondary text-[10px]">/ Orang</span>
+                    <h3 class="font-headline-md text-on-surface mb-0.5 text-base font-bold">BWI → SBY</h3>
+                    <p class="text-label-sm text-secondary mb-3 text-[11px]">Banyuwangi - Surabaya</p>
+                    <div class="flex items-baseline gap-1 mb-3 border-b border-outline-variant pb-3">
+                        <span class="text-body-md text-on-surface-variant text-[10px]">Mulai</span>
+                        <span class="text-xl text-primary font-extrabold">IDR 280k</span>
+                        <span class="text-secondary text-[9px]">/ Orang</span>
                     </div>
-                    <ul class="space-y-3 mb-6 text-body-md text-on-surface-variant text-xs">
-                        <li class="flex items-center gap-2"><span
-                                class="material-symbols-outlined text-primary text-base block"
-                                data-icon="check_circle">check_circle</span> Eksekutif Seat (Kapasitas Terbatas)</li>
-                        <li class="flex items-center gap-2"><span
-                                class="material-symbols-outlined text-primary text-base block"
-                                data-icon="check_circle">check_circle</span> Full Jalur Tol (Perjalanan Lebih Cepat)
-                        </li>
-                        <li class="flex items-center gap-2"><span
-                                class="material-symbols-outlined text-primary text-base block"
-                                data-icon="check_circle">check_circle</span> Door to Door (Jemput &amp; Antar)</li>
-                        <li class="flex items-center gap-2 text-primary font-semibold"><span
-                                class="material-symbols-outlined text-primary text-base block"
-                                data-icon="check_circle">check_circle</span> Makanan, Snack Box &amp; Minuman</li>
+                    <ul class="space-y-2 mb-4 text-body-md text-on-surface-variant text-[11px]">
+                        <li class="flex items-center gap-1.5"><span
+                                class="material-symbols-outlined text-primary text-sm block"
+                                data-icon="check_circle">check_circle</span> Eksekutif Seat</li>
+                        <li class="flex items-center gap-1.5"><span
+                                class="material-symbols-outlined text-primary text-sm block"
+                                data-icon="check_circle">check_circle</span> Full Jalur Tol</li>
+                        <li class="flex items-center gap-1.5"><span
+                                class="material-symbols-outlined text-primary text-sm block"
+                                data-icon="check_circle">check_circle</span> Door to Door</li>
+                        <li class="flex items-center gap-1.5"><span
+                                class="material-symbols-outlined text-primary text-sm block"
+                                data-icon="check_circle">check_circle</span> Armada Bersih &amp; Nyaman</li>
+                        <li class="flex items-center gap-1.5 text-primary font-semibold"><span
+                                class="material-symbols-outlined text-primary text-sm block"
+                                data-icon="check_circle">check_circle</span> Snack &amp; Minuman</li>
                     </ul>
                 </div>
-                <!-- Card 2 -->
+
+                <!-- Card 2: SBY -> BWI -->
                 <div
-                    class="bg-white p-6 rounded-2xl shadow-sm border border-outline-variant hover:border-primary transition-all duration-300 group cursor-pointer hover:shadow-xl lift-card text-left delay-150">
+                    class="bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-outline-variant hover:border-primary transition-all duration-300 group cursor-pointer hover:shadow-xl lift-card text-left delay-75">
                     <div
-                        class="bg-surface-container p-3 rounded-lg w-fit mb-4 group-hover:bg-primary-fixed transition-colors">
-                        <span class="material-symbols-outlined text-primary text-xl block"
+                        class="bg-surface-container p-2.5 rounded-lg w-fit mb-3 group-hover:bg-primary-fixed transition-colors">
+                        <span class="material-symbols-outlined text-primary text-lg block"
                             data-icon="location_on">location_on</span>
                     </div>
-                    <h3 class="font-headline-md text-on-surface mb-0.5 text-lg font-bold">BWI → MLG</h3>
-                    <p class="text-label-sm text-secondary mb-4 text-xs">Banyuwangi - Malang (PP)</p>
-                    <div class="flex items-baseline gap-1 mb-4 border-b border-outline-variant pb-4">
-                        <span class="text-body-md text-on-surface-variant text-xs">Mulai</span>
-                        <span class="text-2xl text-primary font-extrabold">IDR 250k</span>
-                        <span class="text-secondary text-[10px]">/ Orang</span>
+                    <h3 class="font-headline-md text-on-surface mb-0.5 text-base font-bold">SBY → BWI</h3>
+                    <p class="text-label-sm text-secondary mb-3 text-[11px]">Surabaya - Banyuwangi</p>
+                    <div class="flex items-baseline gap-1 mb-3 border-b border-outline-variant pb-3">
+                        <span class="text-body-md text-on-surface-variant text-[10px]">Mulai</span>
+                        <span class="text-xl text-primary font-extrabold">IDR 280k</span>
+                        <span class="text-secondary text-[9px]">/ Orang</span>
                     </div>
-                    <ul class="space-y-3 mb-6 text-body-md text-on-surface-variant text-xs">
-                        <li class="flex items-center gap-2"><span
-                                class="material-symbols-outlined text-primary text-base block"
-                                data-icon="check_circle">check_circle</span> Eksekutif Seat (Kapasitas Terbatas)</li>
-                        <li class="flex items-center gap-2"><span
-                                class="material-symbols-outlined text-primary text-base block"
-                                data-icon="check_circle">check_circle</span> Armada Terbaru (Hiace Commuter/Premio)</li>
-                        <li class="flex items-center gap-2"><span
-                                class="material-symbols-outlined text-primary text-base block"
-                                data-icon="check_circle">check_circle</span> Door to Door (Jemput &amp; Antar)</li>
-                        <li class="flex items-center gap-2 text-primary font-semibold"><span
-                                class="material-symbols-outlined text-primary text-base block"
-                                data-icon="check_circle">check_circle</span> Makanan, Snack Box &amp; Minuman</li>
+                    <ul class="space-y-2 mb-4 text-body-md text-on-surface-variant text-[11px]">
+                        <li class="flex items-center gap-1.5"><span
+                                class="material-symbols-outlined text-primary text-sm block"
+                                data-icon="check_circle">check_circle</span> Eksekutif Seat</li>
+                        <li class="flex items-center gap-1.5"><span
+                                class="material-symbols-outlined text-primary text-sm block"
+                                data-icon="check_circle">check_circle</span> Full Jalur Tol</li>
+                        <li class="flex items-center gap-1.5"><span
+                                class="material-symbols-outlined text-primary text-sm block"
+                                data-icon="check_circle">check_circle</span> Door to Door</li>
+                        <li class="flex items-center gap-1.5"><span
+                                class="material-symbols-outlined text-primary text-sm block"
+                                data-icon="check_circle">check_circle</span> Armada Bersih &amp; Nyaman</li>
+                        <li class="flex items-center gap-1.5 text-primary font-semibold"><span
+                                class="material-symbols-outlined text-primary text-sm block"
+                                data-icon="check_circle">check_circle</span> Snack &amp; Minuman</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: BWI -> MLG -->
+                <div
+                    class="bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-outline-variant hover:border-primary transition-all duration-300 group cursor-pointer hover:shadow-xl lift-card text-left delay-150">
+                    <div
+                        class="bg-surface-container p-2.5 rounded-lg w-fit mb-3 group-hover:bg-primary-fixed transition-colors">
+                        <span class="material-symbols-outlined text-primary text-lg block"
+                            data-icon="location_on">location_on</span>
+                    </div>
+                    <h3 class="font-headline-md text-on-surface mb-0.5 text-base font-bold">BWI → MLG</h3>
+                    <p class="text-label-sm text-secondary mb-3 text-[11px]">Banyuwangi - Malang</p>
+                    <div class="flex items-baseline gap-1 mb-3 border-b border-outline-variant pb-3">
+                        <span class="text-body-md text-on-surface-variant text-[10px]">Mulai</span>
+                        <span class="text-xl text-primary font-extrabold">IDR 250k</span>
+                        <span class="text-secondary text-[9px]">/ Orang</span>
+                    </div>
+                    <ul class="space-y-2 mb-4 text-body-md text-on-surface-variant text-[11px]">
+                        <li class="flex items-center gap-1.5"><span
+                                class="material-symbols-outlined text-primary text-sm block"
+                                data-icon="check_circle">check_circle</span> Eksekutif Seat</li>
+                        <li class="flex items-center gap-1.5"><span
+                                class="material-symbols-outlined text-primary text-sm block"
+                                data-icon="check_circle">check_circle</span> Armada Bersih &amp; Nyaman</li>
+                        <li class="flex items-center gap-1.5"><span
+                                class="material-symbols-outlined text-primary text-sm block"
+                                data-icon="check_circle">check_circle</span> Door to Door</li>
+                        <li class="flex items-center gap-1.5 text-primary font-semibold"><span
+                                class="material-symbols-outlined text-primary text-sm block"
+                                data-icon="check_circle">check_circle</span> Snack &amp; Minuman</li>
+                    </ul>
+                </div>
+
+                <!-- Card 4: MLG -> BWI -->
+                <div
+                    class="bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-outline-variant hover:border-primary transition-all duration-300 group cursor-pointer hover:shadow-xl lift-card text-left delay-225">
+                    <div
+                        class="bg-surface-container p-2.5 rounded-lg w-fit mb-3 group-hover:bg-primary-fixed transition-colors">
+                        <span class="material-symbols-outlined text-primary text-lg block"
+                            data-icon="location_on">location_on</span>
+                    </div>
+                    <h3 class="font-headline-md text-on-surface mb-0.5 text-base font-bold">MLG → BWI</h3>
+                    <p class="text-label-sm text-secondary mb-3 text-[11px]">Malang - Banyuwangi</p>
+                    <div class="flex items-baseline gap-1 mb-3 border-b border-outline-variant pb-3">
+                        <span class="text-body-md text-on-surface-variant text-[10px]">Mulai</span>
+                        <span class="text-xl text-primary font-extrabold">IDR 250k</span>
+                        <span class="text-secondary text-[9px]">/ Orang</span>
+                    </div>
+                    <ul class="space-y-2 mb-4 text-body-md text-on-surface-variant text-[11px]">
+                        <li class="flex items-center gap-1.5"><span
+                                class="material-symbols-outlined text-primary text-sm block"
+                                data-icon="check_circle">check_circle</span> Eksekutif Seat</li>
+                        <li class="flex items-center gap-1.5"><span
+                                class="material-symbols-outlined text-primary text-sm block"
+                                data-icon="check_circle">check_circle</span> Armada Bersih &amp; Nyaman</li>
+                        <li class="flex items-center gap-1.5"><span
+                                class="material-symbols-outlined text-primary text-sm block"
+                                data-icon="check_circle">check_circle</span> Door to Door</li>
+                        <li class="flex items-center gap-1.5 text-primary font-semibold"><span
+                                class="material-symbols-outlined text-primary text-sm block"
+                                data-icon="check_circle">check_circle</span> Snack &amp; Minuman</li>
                     </ul>
                 </div>
             </div>
@@ -641,7 +709,7 @@
 
     <!-- Fixed WhatsApp Floating CTA -->
     <a class="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl flex items-center gap-2 hover:scale-110 transition-transform md:px-6"
-        href="https://wa.me/6289630550000?text=Halo%20Sunrise%20Travels%2C%20saya%20butuh%20bantuan%20mengenai%20pemesanan%20shuttle.">
+        href="https://wa.me/6289630550000?text=Halo%20Sunrise%20Travels%2C%20saya%20butuh%20bantuan%20mengenai%20pemesanan%20travel.">
         <svg class="w-6 h-6 fill-current" viewbox="0 0 24 24">
             <path
                 d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.185-.573c.948.517 2.035.808 3.145.808 3.181 0 5.767-2.584 5.768-5.764 0-3.18-2.586-5.763-5.767-5.763zm3.38 8.161c-.147.415-.852.763-1.176.811-.324.049-.728.067-1.176-.076-.285-.091-.645-.221-1.096-.419-1.921-.843-3.155-2.822-3.251-2.951-.096-.129-.78-.999-.78-1.996 0-.996.521-1.488.706-1.691.185-.202.404-.253.539-.253.135 0 .27 0 .387.005.122.005.286-.046.448.344.167.4.57 1.391.62 1.492.05.101.084.219.017.354-.067.135-.101.219-.202.337-.101.118-.212.264-.303.354-.101.101-.207.211-.089.415.118.204.526.868 1.129 1.403.778.69 1.433.905 1.636 1.006.204.101.324.084.444-.051.12-.135.521-.607.658-.81.135-.204.27-.169.456-.101.185.068 1.179.556 1.381.657.202.101.337.151.387.236.05.084.05.49-.097.905zM12 0C5.373 0 0 5.373 0 12c0 2.123.55 4.12 1.52 5.857L.085 24l6.299-1.654C8.027 23.407 9.943 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z">
@@ -653,7 +721,7 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-    <script src="app.js?v=17834123" defer></script>
+    <script src="app.js?v=17834126" defer></script>
 </body>
 
 </html>
