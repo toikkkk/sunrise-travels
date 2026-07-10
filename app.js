@@ -343,6 +343,22 @@ ${confirmLink}`;
 
         requestAnimationFrame(raf);
 
+        // Instant scroll for Hero CTA buttons to bypass smooth transition delay
+        const heroBtn1 = document.querySelector('a[href="#booking-widget"]');
+        const heroBtn2 = document.querySelector('a[href="#rute"]');
+        [heroBtn1, heroBtn2].forEach(btn => {
+            if (btn) {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = btn.getAttribute('href');
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        lenis.scrollTo(targetEl, { immediate: true, offset: -120 });
+                    }
+                });
+            }
+        });
+
         // Synchronize scroll events
         lenis.on('scroll', () => {
             handleScroll();
@@ -357,6 +373,23 @@ ${confirmLink}`;
             }
         });
     } else {
+        // Fallback instant scroll if Lenis is not active
+        const heroBtn1 = document.querySelector('a[href="#booking-widget"]');
+        const heroBtn2 = document.querySelector('a[href="#rute"]');
+        [heroBtn1, heroBtn2].forEach(btn => {
+            if (btn) {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = btn.getAttribute('href');
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        const y = targetEl.getBoundingClientRect().top + window.pageYOffset - 120;
+                        window.scrollTo({ top: y, behavior: 'auto' });
+                    }
+                });
+            }
+        });
+
         window.addEventListener('scroll', () => {
             handleScroll();
             const scrolled = window.scrollY;
