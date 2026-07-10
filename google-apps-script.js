@@ -1,5 +1,5 @@
 /**
- * GOOGLE APPS SCRIPT SECURE VERIFICATION FOR SUNRISE TRAVELS
+ * GOOGLE APPS SCRIPT SECURE VERIFICATION FOR SUNRISE TRAVELS (WITH DUP PREVENTION)
  * 
  * Petunjuk Instalasi / Update:
  * 1. Buka Google Spreadsheet tempat Anda menyimpan data penumpang.
@@ -23,11 +23,12 @@ function doGet(e) {
     const dateStr = p.tgl || ""; // YYYY-MM-DD format
     const address = p.alamat || "-";
     const passengers = p.penumpang || "1 Orang";
+    const total = p.total || "Rp 0";
     
     // Dapatkan URL Apps Script dinamis
     const scriptUrl = ScriptApp.getService().getUrl();
     
-    const html = getChallengeHtml(name, route, dateStr, address, passengers, scriptUrl, "");
+    const html = getChallengeHtml(name, route, dateStr, address, passengers, total, scriptUrl, "");
     return HtmlService.createHtmlOutput(html)
                       .setTitle("Verifikasi Admin - Sunrise Travels")
                       .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
@@ -46,12 +47,13 @@ function doPost(e) {
     const dateStr = p.tgl || ""; // YYYY-MM-DD format
     const address = p.alamat || "-";
     const passengers = p.penumpang || "1 Orang";
+    const total = p.total || "Rp 0";
     const pin = p.pin || "";
     
     // Jika PIN salah, kembalikan ke halaman input PIN dengan pesan error
     if (pin !== SECRET_PIN) {
       const scriptUrl = ScriptApp.getService().getUrl();
-      const html = getChallengeHtml(name, route, dateStr, address, passengers, scriptUrl, "⚠️ PIN Admin Salah!");
+      const html = getChallengeHtml(name, route, dateStr, address, passengers, total, scriptUrl, "⚠️ PIN Admin Salah!");
       return HtmlService.createHtmlOutput(html)
                         .setTitle("Verifikasi Admin - Sunrise Travels")
                         .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
@@ -77,13 +79,20 @@ function doPost(e) {
     const doc = SpreadsheetApp.getActiveSpreadsheet();
     let sheet = doc.getSheetByName(monthYear);
     
-    // Jika Sheet/Tab untuk bulan tersebut belum ada, buat baru dan isi headernya
+    // JIKA TAB BARU BELUM ADA, BUAT STRUKTUR BARU (DENGAN RINGKASAN DI ATAS)
     if (!sheet) {
       sheet = doc.insertSheet(monthYear);
-      sheet.appendRow(["Timestamp", "Nama Penumpang", "Rute Perjalanan", "Tanggal Keberangkatan", "Alamat Jemput & Tujuan", "Jumlah Penumpang", "Status"]);
+      
+      // Setup Baris Ringkasan Pendapatan di baris 1-2
+      sheet.getRange("A1").setValue("Ringkasan Pendapatan").setFontWeight("bold").setFontSize(11).setFontColor("#E05A00");
+      sheet.getRange("A2").setValue("Total Uang Masuk:");
+      sheet.getRange("B2").setFormula("=SUM(G5:G)").setFontWeight("bold").setNumberFormat('Rp#,##0').setFontColor("#1B7C3E");
+      
+      // Setup Tabel Header di baris 4
+      sheet.getRange(4, 1, 1, 8).setValues([["Timestamp", "Nama Penumpang", "Rute Perjalanan", "Tanggal Keberangkatan", "Alamat Jemput & Tujuan", "Jumlah Penumpang", "Total Bayar", "Status"]]);
       
       // Berikan style tebal dan warna oranye estetik pada header
-      sheet.getRange(1, 1, 1, 7)
+      sheet.getRange(4, 1, 1, 8)
            .setFontWeight("bold")
            .setBackground("#FFF2E6")
            .setFontColor("#E05A00")
@@ -95,26 +104,90 @@ function doPost(e) {
       sheet.setColumnWidth(4, 150); // Tanggal
       sheet.setColumnWidth(5, 300); // Alamat
       sheet.setColumnWidth(6, 120); // Penumpang
-      sheet.setColumnWidth(7, 100); // Status
+      sheet.setColumnWidth(7, 120); // Total Bayar
+      sheet.setColumnWidth(8, 100); // Status
+    } else {
+      // JIKA TAB SUDAH ADA, LAKUKAN AUTO-MIGRASI JIKA MASIH MENGGUNAKAN LAYOUT LAMA
+      
+      // Cek jika baris 1 adalah header tabel lama ("Timestamp")
+      if (sheet.getRange(1, 1).getValue() === "Timestamp") {
+        // Sisipkan 3 baris kosong di atas untuk tempat Ringkasan
+        sheet.insertRowsBefore(1, 3);
+        
+        // Buat Ringkasan Pendapatan di baris 1-2 baru
+        sheet.getRange("A1").setValue("Ringkasan Pendapatan").setFontWeight("bold").setFontSize(11).setFontColor("#E05A00");
+        sheet.getRange("A2").setValue("Total Uang Masuk:");
+        sheet.getRange("B2").setFormula("=SUM(G5:G)").setFontWeight("bold").setNumberFormat('Rp#,##0').setFontColor("#1B7C3E");
+        
+        // Update header di baris 4 (sebelumnya bergeser dari baris 1)
+        sheet.getRange("G4").setValue("Total Bayar");
+        sheet.getRange("H4").setValue("Status");
+        
+        // Berikan format styling baru pada header
+        sheet.getRange(4, 1, 1, 8)
+             .setFontWeight("bold")
+             .setBackground("#FFF2E6")
+             .setFontColor("#E05A00")
+             .setHorizontalAlignment("center");
+             
+        sheet.setColumnWidth(7, 120); // Total Bayar
+        sheet.setColumnWidth(8, 100); // Status
+      }
+      
+      // Bersihkan dan pindahkan nilai "LUNAS" lama yang salah masuk ke kolom Total Bayar (kolom G)
+      const lastRow = sheet.getLastRow();
+      if (lastRow >= 5) {
+        const rangeG = sheet.getRange(5, 7, lastRow - 4, 1);
+        const rangeH = sheet.getRange(5, 8, lastRow - 4, 1);
+        const valuesG = rangeG.getValues();
+        const valuesH = rangeH.getValues();
+        
+        let isModified = false;
+        for (let i = 0; i < valuesG.length; i++) {
+          if (valuesG[i][0] === "LUNAS" || valuesG[i][0] === "") {
+            valuesG[i][0] = 0; // Set nominal ke 0 agar SUM formula berjalan normal
+            valuesH[i][0] = "LUNAS"; // Pindahkan status ke kolom H
+            isModified = true;
+          }
+        }
+        if (isModified) {
+          rangeG.setValues(valuesG);
+          rangeH.setValues(valuesH);
+        }
+      }
     }
     
-    // Masukkan data penumpang ke baris baru dengan status LUNAS
-    const timestamp = new Date();
-    sheet.appendRow([timestamp, name, route, dateStr, address, passengers, "LUNAS"]);
+    // Parse nominal harga menjadi angka murni agar bisa dijumlahkan oleh SUM (misal: "Rp 280.000" -> 280000)
+    let numericPrice = 0;
+    if (total) {
+      const cleanStr = total.replace(/[^0-9]/g, ""); // Hapus karakter non-angka
+      numericPrice = parseInt(cleanStr, 10) || 0;
+    }
     
-    // Style sel status LUNAS menjadi warna hijau sukses
+    // Masukkan data penumpang ke baris baru
+    const timestamp = new Date();
+    sheet.appendRow([timestamp, name, route, dateStr, address, passengers, numericPrice, "LUNAS"]);
+    
+    // Dapatkan baris terakhir yang baru saja ditulis
     const lastRow = sheet.getLastRow();
-    const statusCell = sheet.getRange(lastRow, 7);
+    
+    // Format nominal uang di kolom G agar berformat Rupiah rapi
+    const priceCell = sheet.getRange(lastRow, 7);
+    priceCell.setNumberFormat('Rp#,##0')
+             .setHorizontalAlignment("right");
+             
+    // Style sel status LUNAS menjadi warna hijau sukses di kolom H
+    const statusCell = sheet.getRange(lastRow, 8);
     statusCell.setBackground("#E2F8E8")
               .setFontColor("#1B7C3E")
               .setFontWeight("bold")
               .setHorizontalAlignment("center");
               
-    // Format baris baru agar rapi
+    // Format baris baru agar rata kiri
     sheet.getRange(lastRow, 1, 1, 6).setHorizontalAlignment("left");
     
     // Kembalikan halaman sukses
-    const htmlSuccess = getSuccessHtml(name, route, dateStr, monthYear);
+    const htmlSuccess = getSuccessHtml(name, route, dateStr, total, monthYear);
     return HtmlService.createHtmlOutput(htmlSuccess)
                       .setTitle("Konfirmasi Berhasil - Sunrise Travels")
                       .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
@@ -125,7 +198,7 @@ function doPost(e) {
 }
 
 // Render halaman input PIN
-function getChallengeHtml(name, route, dateStr, address, passengers, scriptUrl, errorMsg) {
+function getChallengeHtml(name, route, dateStr, address, passengers, total, scriptUrl, errorMsg) {
   const pinWarning = errorMsg !== "" ? `<p style="color: #EF4444; font-weight: 600; font-size: 13px; margin: -10px 0 15px 0;">${errorMsg}</p>` : "";
   
   return `
@@ -257,15 +330,17 @@ function getChallengeHtml(name, route, dateStr, address, passengers, scriptUrl, 
             <div class="detail-row"><span class="label">Rute:</span><span class="value">${route}</span></div>
             <div class="detail-row"><span class="label">Tanggal:</span><span class="value">${dateStr}</span></div>
             <div class="detail-row"><span class="label">Penumpang:</span><span class="value">${passengers}</span></div>
+            <div class="detail-row" style="border-bottom: none;"><span class="label" style="color: #E05A00; font-weight: bold;">Total Bayar:</span><span class="value" style="color: #E05A00; font-weight: bold;">${total}</span></div>
           </div>
 
           <!-- Gunakan action yang mengarah ke URL Apps Script (POST) -->
-          <form method="post" action="${scriptUrl}">
+          <form method="post" action="${scriptUrl}" onsubmit="return handleFormSubmit(this)">
             <input type="hidden" name="nama" value="${name}">
             <input type="hidden" name="rute" value="${route}">
             <input type="hidden" name="tgl" value="${dateStr}">
             <input type="hidden" name="alamat" value="${address}">
             <input type="hidden" name="penumpang" value="${passengers}">
+            <input type="hidden" name="total" value="${total}">
             
             <div class="input-group">
               <input type="password" name="pin" placeholder="Masukkan PIN Admin" autofocus required>
@@ -273,16 +348,28 @@ function getChallengeHtml(name, route, dateStr, address, passengers, scriptUrl, 
             
             ${pinWarning}
             
-            <button type="submit" class="submit-btn">Konfirmasi & Simpan ke Sheets</button>
+            <button type="submit" id="submit-btn" class="submit-btn">Konfirmasi & Simpan ke Sheets</button>
           </form>
         </div>
+
+        <script>
+          function handleFormSubmit(form) {
+            const btn = document.getElementById('submit-btn');
+            // Menonaktifkan tombol agar tidak bisa diklik berulang kali selama proses pengiriman
+            btn.disabled = true;
+            btn.innerText = "Memproses...";
+            btn.style.background = "#94A3B8";
+            btn.style.cursor = "not-allowed";
+            return true;
+          }
+        </script>
       </body>
     </html>
   `;
 }
 
 // Render halaman sukses
-function getSuccessHtml(name, route, dateStr, monthYear) {
+function getSuccessHtml(name, route, dateStr, total, monthYear) {
   return `
     <!DOCTYPE html>
     <html>
@@ -390,7 +477,8 @@ function getSuccessHtml(name, route, dateStr, monthYear) {
             <div class="detail-row"><span class="label">Nama:</span><span class="value">${name}</span></div>
             <div class="detail-row"><span class="label">Rute:</span><span class="value">${route}</span></div>
             <div class="detail-row"><span class="label">Tanggal:</span><span class="value">${dateStr}</span></div>
-            <div class="detail-row"><span class="label">Tab Bulan:</span><span class="value">${monthYear}</span></div>
+            <div class="detail-row"><span class="label">Total Bayar:</span><span class="value" style="color: #1B7C3E; font-weight: bold;">${total}</span></div>
+            <div class="detail-row" style="border-bottom: none;"><span class="label">Tab Bulan:</span><span class="value">${monthYear}</span></div>
           </div>
           <a href="javascript:window.close();" class="close-btn">Tutup Halaman</a>
         </div>

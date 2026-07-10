@@ -211,10 +211,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 formattedDate = dateObj.toLocaleDateString('id-ID', options);
             } catch (err) { }
 
+            // Calculate dynamic price based on route and passenger count
+            const routeVal = selectRoute ? selectRoute.value : '';
+            let pricePerTicket = 0;
+            if (routeVal === 'BWI-SBY' || routeVal === 'SBY-BWI') {
+                pricePerTicket = 280000;
+            } else if (routeVal === 'BWI-MLG' || routeVal === 'MLG-BWI') {
+                pricePerTicket = 250000;
+            }
+
+            let passengerCount = 1;
+            if (passengersText.includes('2')) passengerCount = 2;
+            else if (passengersText.includes('3')) passengerCount = 3;
+            else if (passengersText.includes('4')) passengerCount = 4;
+
+            const totalPrice = pricePerTicket * passengerCount;
+            const formattedTotal = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(totalPrice);
+
             // Google Apps Script Web App URL placeholder
             // Ganti URL di bawah ini dengan URL hasil deploy Aplikasi Web Google Apps Script Anda
             const scriptUrl = 'https://script.google.com/macros/s/AKfycbwisRMfhgbgcAcmvVGWLxghydaIHdoLN8zt8dQhpj1fSG7ctuwIPSPRA6vxu8BkYk4_/exec';
-            const confirmLink = `${scriptUrl}?nama=${encodeURIComponent(nameVal)}&rute=${encodeURIComponent(routeText)}&tgl=${encodeURIComponent(dateValue)}&alamat=${encodeURIComponent(pickupVal + ' -> ' + destinationVal)}&penumpang=${encodeURIComponent(passengersText)}`;
+            const confirmLink = `${scriptUrl}?nama=${encodeURIComponent(nameVal)}&rute=${encodeURIComponent(routeText)}&tgl=${encodeURIComponent(dateValue)}&alamat=${encodeURIComponent(pickupVal + ' -> ' + destinationVal)}&penumpang=${encodeURIComponent(passengersText)}&total=${encodeURIComponent(formattedTotal)}`;
 
             const message = `Halo Sunrise Travels, saya ingin memesan tiket shuttle:
 
@@ -225,6 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
 • Penumpang: ${passengersText}
 • Penjemputan: ${pickupVal}
 • Tujuan: ${destinationVal}
+• Total Bayar: ${formattedTotal}
 
 Mohon diproses untuk ketersediaan kursi. Terima kasih!
 
